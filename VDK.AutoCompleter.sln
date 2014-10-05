@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VDK.AutoCompleter.TestClient", "VDK.AutoCompleter.TestClient\VDK.AutoCompleter.TestClient.csproj", "{A84CC56C-E985-4884-8B24-A6A04A702DB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VDK.AutoCompleter.Core", "VDK.AutoCompleter.Core\VDK.AutoCompleter.Core.csproj", "{FACF102B-E125-4782-AEAF-8C504C8DF050}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VDK.AutoCompleter.Common", "VDK.AutoCompleter.Common\VDK.AutoCompleter.Common.csproj", "{386FF018-2DCA-4C76-A565-1CDB39770027}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{912575FC-0A71-4E04-B9F6-B82B8F691766}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VDK.AutoCompleter.TestCore", "VDK.AutoCompleter.TestCore\VDK.AutoCompleter.TestCore.csproj", "{A09F608E-2705-4BF2-8647-74DD82C4B4FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AF8AD8BD-72A3-4DA3-B515-34CFFFB92F9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{F52EA672-7931-4207-B634-042E98173BE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A84CC56C-E985-4884-8B24-A6A04A702DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A84CC56C-E985-4884-8B24-A6A04A702DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A84CC56C-E985-4884-8B24-A6A04A702DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A84CC56C-E985-4884-8B24-A6A04A702DB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FACF102B-E125-4782-AEAF-8C504C8DF050}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FACF102B-E125-4782-AEAF-8C504C8DF050}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FACF102B-E125-4782-AEAF-8C504C8DF050}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FACF102B-E125-4782-AEAF-8C504C8DF050}.Release|Any CPU.Build.0 = Release|Any CPU
+		{386FF018-2DCA-4C76-A565-1CDB39770027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{386FF018-2DCA-4C76-A565-1CDB39770027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{386FF018-2DCA-4C76-A565-1CDB39770027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{386FF018-2DCA-4C76-A565-1CDB39770027}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A09F608E-2705-4BF2-8647-74DD82C4B4FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A09F608E-2705-4BF2-8647-74DD82C4B4FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A09F608E-2705-4BF2-8647-74DD82C4B4FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A09F608E-2705-4BF2-8647-74DD82C4B4FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FACF102B-E125-4782-AEAF-8C504C8DF050} = {F52EA672-7931-4207-B634-042E98173BE9}
+		{386FF018-2DCA-4C76-A565-1CDB39770027} = {F52EA672-7931-4207-B634-042E98173BE9}
+		{A09F608E-2705-4BF2-8647-74DD82C4B4FE} = {AF8AD8BD-72A3-4DA3-B515-34CFFFB92F9E}
+	EndGlobalSection
+EndGlobal
