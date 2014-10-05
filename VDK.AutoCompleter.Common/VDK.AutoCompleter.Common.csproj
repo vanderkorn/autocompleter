@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IOC\AutofacExtensions.cs" />
     <Compile Include="IOC\CoreInitializer.cs" />
     <Compile Include="IOC\IDependency.cs" />
     <Compile Include="IOC\ISingletonDependency.cs" />
