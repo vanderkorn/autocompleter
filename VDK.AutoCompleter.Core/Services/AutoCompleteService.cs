@@ -7,11 +7,11 @@ namespace VDK.AutoCompleter.Core.Services
     public class AutoCompleteService : IAutoCompleteService
     {
         private readonly INGramParser _nGramParser;
-        private readonly SortedDictionary<string, SortedSet<Word>> _vocabulary;
+        private readonly Dictionary<string, SortedSet<Word>> _vocabulary;
         public AutoCompleteService(INGramParser nGramParser)
         {
             _nGramParser = nGramParser;
-            _vocabulary = new SortedDictionary<string, SortedSet<Word>>();
+            _vocabulary = new Dictionary<string, SortedSet<Word>>();
         }
 
         public void AddWordToVocabulary(Word word)
