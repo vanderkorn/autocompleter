@@ -3,5 +3,4 @@
 /TestResults
 /*.suo
 bin
-/VDK.AutoCompleter.TestClient/obj
-/VDK.AutoCompleter.TestClient/bin
+obj
