@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using VDK.AutoCompleter.Common.IOC;
+using Vdk.AutoCompleter.Common.IOC;
 
-namespace VDK.AutoCompleter.Core.Services
+namespace Vdk.AutoCompleter.Core.Services
 {
-    public interface IVocabularyReader : IDependency
+    public interface IVocabularyReader<T> : IDependency
     {
         void AddVocabulary(TextReader reader);
-        IEnumerable<string> GetTestPrefixes();
+        IEnumerable<T> GetTestPrefixes();
     }
 }

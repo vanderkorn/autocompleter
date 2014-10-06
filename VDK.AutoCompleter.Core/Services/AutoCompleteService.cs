@@ -1,20 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using VDK.AutoCompleter.Core.Models;
+using Vdk.AutoCompleter.Core.Models;
 
-namespace VDK.AutoCompleter.Core.Services
+namespace Vdk.AutoCompleter.Core.Services
 {
-    public class AutoCompleteService : IAutoCompleteService
+    public class AutoCompleteService<T> : IAutoCompleteService<T> where T : IComparable<T>
     {
-        private readonly INGramParser _nGramParser;
-        private readonly Dictionary<string, SortedSet<Word>> _vocabulary;
-        public AutoCompleteService(INGramParser nGramParser)
+        private readonly INGramParser<T> _nGramParser;
+        private readonly IComparerFactory<T> _comparerFactory;
+
+
+
+        private  Dictionary<T, SortedSet<Word<T>>> _vocabulary;
+
+
+        public AutoCompleteService(INGramParser<T> nGramParser, IComparerFactory<T> comparerFactory)
         {
             _nGramParser = nGramParser;
-            _vocabulary = new Dictionary<string, SortedSet<Word>>();
+            _comparerFactory = comparerFactory;
+            _vocabulary = new Dictionary<T, SortedSet<Word<T>>>();
         }
 
-        public void AddWordToVocabulary(Word word)
+    
+
+        public void AddWordToVocabulary(Word<T> word)
         {
             foreach (var lexem in _nGramParser.GetLexemes(word.Value))
             {
@@ -24,7 +34,7 @@ namespace VDK.AutoCompleter.Core.Services
                 }
                 else
                 {
-                    _vocabulary.Add(lexem, new SortedSet<Word>(new WordComparer())
+                    _vocabulary.Add(lexem, new SortedSet<Word<T>>(_comparerFactory.GetComparer())
                     {
                         word
                     });
@@ -32,17 +42,23 @@ namespace VDK.AutoCompleter.Core.Services
             }
         }
 
-        public void AddWordsToVocabulary(IEnumerable<Word> words)
+        public void AddWordsToVocabulary(IEnumerable<Word<T>> words)
         {
             foreach (var word in words)
                 AddWordToVocabulary(word);
         }
 
-        public IEnumerable<Word> GetWordsByPrefix(string prefix)
+        public IEnumerable<Word<T>> GetWordsByPrefix(T prefix)
         {
             if (_vocabulary.ContainsKey(prefix))
                 return _vocabulary[prefix].Take(10);
             return null;
+        }
+
+        public void SetCountWords(uint count)
+        {
+            if (_vocabulary.Count == 0)
+                _vocabulary = new Dictionary<T, SortedSet<Word<T>>>((int) count);
         }
     }
 }

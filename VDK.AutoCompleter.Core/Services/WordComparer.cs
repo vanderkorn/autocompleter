@@ -1,12 +1,27 @@
 using System;
 using System.Collections.Generic;
-using VDK.AutoCompleter.Core.Models;
+using Vdk.AutoCompleter.Core.Models;
 
-namespace VDK.AutoCompleter.Core.Services
+namespace Vdk.AutoCompleter.Core.Services
 {
-    public class WordComparer : IComparer<Word>
+    //public class WordComparer<T> : IComparer<Word<T>> where T : IComparable<T>
+    //{
+    //    public int Compare(Word<T> x, Word<T> y)
+    //    {
+
+    //        var resultCompare = x.Frequency.CompareTo(y.Frequency);
+
+    //        if (resultCompare < 0)
+    //            return 1;
+
+    //        if (resultCompare > 0)
+    //            return -1;
+    //        return x.Value.CompareTo(y.Value);
+    //    }
+    //}
+    public class WordComparer : IComparer<Word<AsciiString>>
     {
-        public int Compare(Word x, Word y)
+        public int Compare(Word<AsciiString> x, Word<Models.AsciiString> y)
         {
             var resultCompare = x.Frequency.CompareTo(y.Frequency);
 
@@ -15,18 +30,28 @@ namespace VDK.AutoCompleter.Core.Services
 
             if (resultCompare > 0)
                 return -1;
-
-            return String.Compare(x.Value, y.Value, StringComparison.Ordinal);
-
-            //var resultCompare = String.Compare(x.Value, y.Value, StringComparison.Ordinal);
-
-            //if (resultCompare > 0)
-            //    return 1;
-
-            //if (resultCompare < 0)
-            //    return -1;
-
-            //return x.Frequency.CompareTo(y.Frequency);
+            return x.Value.CompareTo(y.Value);
         }
     }
+
+    public interface IComparerFactory<T> where T : IComparable<T>
+    {
+        IComparer<Word<T>> GetComparer();
+    }
+
+    public class ComparerFactory: IComparerFactory<string>
+    {
+        public IComparer<Word<string>> GetComparer() 
+        {
+                return new StringWordComparer();
+        }
+    }
+    public class AsciiComparerFactory : IComparerFactory<AsciiString>
+    {
+        public IComparer<Word<AsciiString>> GetComparer()
+        {
+            return new WordComparer();
+        }
+    }
+
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Autofac;
 using Autofac.Core;
 
-namespace VDK.AutoCompleter.Common.IOC
+namespace Vdk.AutoCompleter.Common.IOC
 {
     /// <summary>
     /// 

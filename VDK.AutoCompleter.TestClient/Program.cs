@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
 using Autofac;
-using VDK.AutoCompleter.Common.IOC;
-using VDK.AutoCompleter.Core;
-using VDK.AutoCompleter.TestClient.Models;
-using VDK.AutoCompleter.TestClient.Services;
+using Vdk.AutoCompleter.Common.IOC;
+using Vdk.AutoCompleter.Core;
+using Vdk.AutoCompleter.TestClient.Models;
+using Vdk.AutoCompleter.TestClient.Services;
 
-namespace VDK.AutoCompleter.TestClient
+namespace Vdk.AutoCompleter.TestClient
 {
     class Program
     {

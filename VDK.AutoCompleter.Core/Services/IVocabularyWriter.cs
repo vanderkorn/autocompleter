@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using VDK.AutoCompleter.Common.IOC;
+using Vdk.AutoCompleter.Common.IOC;
 
-namespace VDK.AutoCompleter.Core.Services
+namespace Vdk.AutoCompleter.Core.Services
 {
-    public interface IVocabularyWriter : IDependency
+    public interface IVocabularyWriter<T> : IDependency
     {
-        void GetWordsByPrefixes(IEnumerable<string> prefixes, TextWriter writer);
+        void GetWordsByPrefixes(IEnumerable<T> prefixes, TextWriter writer);
     }
 }

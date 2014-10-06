@@ -7,12 +7,13 @@
     <ProjectGuid>{A84CC56C-E985-4884-8B24-A6A04A702DB2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VDK.AutoCompleter.TestClient</RootNamespace>
-    <AssemblyName>VDK.AutoCompleter.TestClient</AssemblyName>
+    <RootNamespace>Vdk.AutoCompleter.TestClient</RootNamespace>
+    <AssemblyName>Vdk.AutoCompleter.TestClient</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>a89e68a0</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -64,13 +65,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VDK.AutoCompleter.Common\VDK.AutoCompleter.Common.csproj">
+    <ProjectReference Include="..\VDK.AutoCompleter.Common\Vdk.AutoCompleter.Common.csproj">
       <Project>{386ff018-2dca-4c76-a565-1cdb39770027}</Project>
-      <Name>VDK.AutoCompleter.Common</Name>
+      <Name>Vdk.AutoCompleter.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VDK.AutoCompleter.Core\VDK.AutoCompleter.Core.csproj">
+    <ProjectReference Include="..\VDK.AutoCompleter.Core\Vdk.AutoCompleter.Core.csproj">
       <Project>{facf102b-e125-4782-aeaf-8c504c8df050}</Project>
-      <Name>VDK.AutoCompleter.Core</Name>
+      <Name>Vdk.AutoCompleter.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -80,7 +81,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets'))" />
   </Target>
+  <Import Project="..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

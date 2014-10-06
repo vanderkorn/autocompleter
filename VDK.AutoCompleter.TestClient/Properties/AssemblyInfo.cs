@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("VDK.AutoCompleter.TestClient")]
+[assembly: AssemblyTitle("Vdk.AutoCompleter.TestClient")]
 [assembly: AssemblyDescription("Клиентское приложение для решения базовой задачи нахождения автодополнений слов")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ivan Kornilov")]
-[assembly: AssemblyProduct("VDK.AutoCompleter.TestClient")]
-[assembly: AssemblyCopyright("Copyright ©  VDK.AutoCompleter 2014")]
+[assembly: AssemblyProduct("Vdk.AutoCompleter.TestClient")]
+[assembly: AssemblyCopyright("Copyright ©  Vdk.AutoCompleter 2014")]
 [assembly: AssemblyTrademark("Van Der Korn")]
 [assembly: AssemblyCulture("")]
 

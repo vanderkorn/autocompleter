@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace VDK.AutoCompleter.TestClient.Models
+namespace Vdk.AutoCompleter.TestClient.Models
 {
     public class Options
     {

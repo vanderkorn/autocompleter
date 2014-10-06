@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using VDK.AutoCompleter.Common.IOC;
+using Vdk.AutoCompleter.Common.IOC;
 
-namespace VDK.AutoCompleter.Core.Services
+namespace Vdk.AutoCompleter.Core.Services
 {
-    public interface INGramParser : IDependency
+    public interface INGramParser<T> 
     {
-        IEnumerable<string> GetLexemes(string word);
+        IEnumerable<T> GetLexemes(T word);
     }
 }

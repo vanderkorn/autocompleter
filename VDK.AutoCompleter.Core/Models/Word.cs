@@ -1,8 +1,10 @@
-﻿namespace VDK.AutoCompleter.Core.Models
+﻿namespace Vdk.AutoCompleter.Core.Models
 {
-    public class Word
+    public class Word<T>
     {
-        public string Value { get; set; }
+        public T Value { get; set; }
         public uint Frequency { get; set; }
     }
+
+
 }

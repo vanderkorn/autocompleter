@@ -4,7 +4,7 @@ using System.Linq;
 using Autofac.Builder;
 using Autofac.Core;
 
-namespace VDK.AutoCompleter.Common.IOC
+namespace Vdk.AutoCompleter.Common.IOC
 {
     /// <summary>
     /// јвтоматическа€ регистраци€ зависимостей

@@ -1,7 +1,7 @@
 using System;
 using Autofac;
 
-namespace VDK.AutoCompleter.Common.IOC
+namespace Vdk.AutoCompleter.Common.IOC
 {
     /// <summary>
     /// Регистрация базовых зависимостей

@@ -1,7 +1,7 @@
 ﻿using System.IO;
-using VDK.AutoCompleter.Common.IOC;
+using Vdk.AutoCompleter.Common.IOC;
 
-namespace VDK.AutoCompleter.TestClient.Services
+namespace Vdk.AutoCompleter.TestClient.Services
 {
     public interface IBatchPrefixService:IDependency
     {

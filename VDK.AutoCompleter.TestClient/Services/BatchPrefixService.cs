@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using VDK.AutoCompleter.Core.Services;
+using Vdk.AutoCompleter.Core.Models;
+using Vdk.AutoCompleter.Core.Services;
 
-namespace VDK.AutoCompleter.TestClient.Services
+namespace Vdk.AutoCompleter.TestClient.Services
 {
     public class BatchPrefixService : IBatchPrefixService
     {
-        private readonly IVocabularyReader _reader;
-        private readonly IVocabularyWriter _writer;
+        private readonly IVocabularyReader<AsciiString> _reader;
+        private readonly IVocabularyWriter<AsciiString> _writer;
 
-        public BatchPrefixService(IVocabularyReader reader, IVocabularyWriter writer)
+        public BatchPrefixService(IVocabularyReader<AsciiString> reader, IVocabularyWriter<AsciiString> writer)
         {
             _reader = reader;
             _writer = writer;
@@ -20,7 +21,7 @@ namespace VDK.AutoCompleter.TestClient.Services
         {
             _reader.AddVocabulary(reader);
             var lexemes = _reader.GetTestPrefixes();
-            var enumerable = lexemes as IList<string> ?? lexemes.ToList();
+            var enumerable = lexemes as IList<AsciiString> ?? lexemes.ToList();
             _writer.GetWordsByPrefixes(enumerable, writer);
         }
     }
