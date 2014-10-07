@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using Vdk.AutoCompleter.Core.Collections;
+using Vdk.AutoCompleter.Core.Comparers;
 using Vdk.AutoCompleter.Core.Models;
+using Vdk.AutoCompleter.Core.NGramGenerators;
 
 namespace Vdk.AutoCompleter.Core.Services
 {
@@ -12,7 +16,7 @@ namespace Vdk.AutoCompleter.Core.Services
 
 
 
-        private  Dictionary<T, SortedSet<Word<T>>> _vocabulary;
+        private Dictionary<T, SortedSet<Word<T>>> _vocabulary;
 
 
         public AutoCompleteService(INGramParser<T> nGramParser, IComparerFactory<T> comparerFactory)
@@ -57,7 +61,7 @@ namespace Vdk.AutoCompleter.Core.Services
         public void SetCountWords(uint count)
         {
             if (_vocabulary.Count == 0)
-                _vocabulary = new Dictionary<T, SortedSet<Word<T>>>((int) count);
+                _vocabulary = new Dictionary<T, SortedSet<Word<T>>>((int)count);
         }
     }
 }

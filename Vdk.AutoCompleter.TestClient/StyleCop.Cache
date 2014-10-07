@@ -10,7 +10,7 @@
     <configuration>DEBUG;TRACE</configuration>
   </project>
   <project key="395505635">
-    <configuration>DEBUG;TRACE</configuration>
+    <configuration>TRACE</configuration>
   </project>
   <sourcecode name="Options.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
@@ -253,7 +253,7 @@
     <timestamps>
       <styleCop>2014.10.05 23:15:45.473</styleCop>
       <settingsFile>2014.10.05 23:24:34.740</settingsFile>
-      <sourceFile>2014.10.06 22:26:44.706</sourceFile>
+      <sourceFile>2014.10.08 00:39:33.114</sourceFile>
       <parser>2014.10.05 23:15:45.473</parser>
       <StyleCop.CSharp.DocumentationRules>2014.10.05 23:15:45.473</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-542987802</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -301,93 +301,103 @@
         <line>5</line>
         <warning>False</warning>
       </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBePlacedWithinNamespace" ruleCheckId="SA1200">
+        <context>All using directives must be placed inside of the namespace.</context>
+        <line>6</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBePlacedWithinNamespace" ruleCheckId="SA1200">
+        <context>All using directives must be placed inside of the namespace.</context>
+        <line>7</line>
+        <warning>False</warning>
+      </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
         <context>The class must have a documentation header.</context>
-        <line>9</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
-        <context>The field must have a documentation header.</context>
-        <line>11</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustNotBeginWithUnderscore" ruleCheckId="SA1309">
-        <context>Field names must not start with an underscore.</context>
         <line>11</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
         <context>The field must have a documentation header.</context>
-        <line>12</line>
+        <line>13</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustNotBeginWithUnderscore" ruleCheckId="SA1309">
         <context>Field names must not start with an underscore.</context>
-        <line>12</line>
+        <line>13</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
+        <context>The field must have a documentation header.</context>
+        <line>14</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.NamingRules" rule="FieldNamesMustNotBeginWithUnderscore" ruleCheckId="SA1309">
+        <context>Field names must not start with an underscore.</context>
+        <line>14</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
         <context>The constructor must have a documentation header.</context>
-        <line>14</line>
+        <line>16</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to _reader must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>16</line>
-        <index>541</index>
-        <endIndex>547</endIndex>
-        <startLine>16</startLine>
+        <line>18</line>
+        <index>619</index>
+        <endIndex>625</endIndex>
+        <startLine>18</startLine>
         <startColumn>13</startColumn>
-        <endLine>16</endLine>
+        <endLine>18</endLine>
         <endColumn>19</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to _writer must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>17</line>
-        <index>572</index>
-        <endIndex>578</endIndex>
-        <startLine>17</startLine>
+        <line>19</line>
+        <index>650</index>
+        <endIndex>656</endIndex>
+        <startLine>19</startLine>
         <startColumn>13</startColumn>
-        <endLine>17</endLine>
+        <endLine>19</endLine>
         <endColumn>19</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
         <context>The method must have a documentation header.</context>
-        <line>20</line>
+        <line>22</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to _reader must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>22</line>
-        <index>690</index>
-        <endIndex>696</endIndex>
-        <startLine>22</startLine>
+        <line>24</line>
+        <index>768</index>
+        <endIndex>774</endIndex>
+        <startLine>24</startLine>
         <startColumn>13</startColumn>
-        <endLine>22</endLine>
+        <endLine>24</endLine>
         <endColumn>19</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to _reader must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>23</line>
-        <index>748</index>
-        <endIndex>754</endIndex>
-        <startLine>23</startLine>
+        <line>25</line>
+        <index>826</index>
+        <endIndex>832</endIndex>
+        <startLine>25</startLine>
         <startColumn>27</startColumn>
-        <endLine>23</endLine>
+        <endLine>25</endLine>
         <endColumn>33</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to _writer must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>25</line>
-        <index>869</index>
-        <endIndex>875</endIndex>
-        <startLine>25</startLine>
+        <line>27</line>
+        <index>947</index>
+        <endIndex>953</endIndex>
+        <startLine>27</startLine>
         <startColumn>13</startColumn>
-        <endLine>25</endLine>
+        <endLine>27</endLine>
         <endColumn>19</endColumn>
         <warning>False</warning>
       </violation>
@@ -420,7 +430,7 @@
     <timestamps>
       <styleCop>2014.10.05 23:15:45.473</styleCop>
       <settingsFile>2014.10.05 23:24:34.740</settingsFile>
-      <sourceFile>2014.10.05 18:19:24.655</sourceFile>
+      <sourceFile>2014.10.05 23:05:58.017</sourceFile>
       <parser>2014.10.05 23:15:45.473</parser>
       <StyleCop.CSharp.DocumentationRules>2014.10.05 23:15:45.473</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-542987802</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -449,7 +459,7 @@
     <timestamps>
       <styleCop>2014.10.05 23:15:45.473</styleCop>
       <settingsFile>2014.10.05 23:24:34.740</settingsFile>
-      <sourceFile>2014.10.05 18:19:24.655</sourceFile>
+      <sourceFile>2014.10.05 23:05:58.018</sourceFile>
       <parser>2014.10.05 23:15:45.473</parser>
       <StyleCop.CSharp.DocumentationRules>2014.10.05 23:15:45.473</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-542987802</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -478,7 +488,7 @@
     <timestamps>
       <styleCop>2014.10.05 23:15:45.473</styleCop>
       <settingsFile>2014.10.05 23:24:34.740</settingsFile>
-      <sourceFile>2014.10.05 18:19:24.656</sourceFile>
+      <sourceFile>2014.10.05 23:05:58.018</sourceFile>
       <parser>2014.10.05 23:15:45.473</parser>
       <StyleCop.CSharp.DocumentationRules>2014.10.05 23:15:45.473</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-542987802</StyleCop.CSharp.DocumentationRules.FilesHashCode>

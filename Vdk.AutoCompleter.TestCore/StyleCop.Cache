@@ -10,13 +10,13 @@
     <configuration>DEBUG;TRACE</configuration>
   </project>
   <project key="-497364769">
-    <configuration>DEBUG;TRACE</configuration>
+    <configuration>TRACE</configuration>
   </project>
   <sourcecode name="TestAutoCompleteModule.cs" parser="StyleCop.CSharp.CsParser">
     <timestamps>
       <styleCop>2014.10.05 23:15:45.473</styleCop>
       <settingsFile>2014.10.05 23:15:45.438</settingsFile>
-      <sourceFile>2014.10.07 23:42:24.522</sourceFile>
+      <sourceFile>2014.10.08 00:39:33.130</sourceFile>
       <parser>2014.10.05 23:15:45.473</parser>
       <StyleCop.CSharp.DocumentationRules>2014.10.05 23:15:45.473</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-542987802</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -94,50 +94,50 @@
         <line>11</line>
         <warning>False</warning>
       </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBePlacedWithinNamespace" ruleCheckId="SA1200">
+        <context>All using directives must be placed inside of the namespace.</context>
+        <line>12</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.OrderingRules" rule="UsingDirectivesMustBePlacedWithinNamespace" ruleCheckId="SA1200">
+        <context>All using directives must be placed inside of the namespace.</context>
+        <line>13</line>
+        <warning>False</warning>
+      </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
         <context>The class must have a documentation header.</context>
-        <line>16</line>
+        <line>18</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
         <context>The method must have a documentation header.</context>
-        <line>21</line>
+        <line>23</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="PrefixLocalCallsWithThis" ruleCheckId="SA1101">
         <context>The call to Dependencies must begin with the 'this.' prefix to indicate that the item is a member of the class.</context>
-        <line>23</line>
-        <index>630</index>
-        <endIndex>641</endIndex>
-        <startLine>23</startLine>
+        <line>25</line>
+        <index>708</index>
+        <endIndex>719</endIndex>
+        <startLine>25</startLine>
         <startColumn>40</startColumn>
-        <endLine>23</endLine>
+        <endLine>25</endLine>
         <endColumn>51</endColumn>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
         <context>The method must have a documentation header.</context>
-        <line>26</line>
+        <line>28</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.OrderingRules" rule="ElementsMustBeOrderedByAccess" ruleCheckId="SA1202">
         <context>All private methods must be placed after all public methods.</context>
-        <line>34</line>
+        <line>36</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.DocumentationRules" rule="ElementsMustBeDocumented" ruleCheckId="SA1600">
         <context>The method must have a documentation header.</context>
-        <line>34</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
-        <context>The code must not contain multiple blank lines in a row.</context>
-        <line>38</line>
-        <warning>False</warning>
-      </violation>
-      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
-        <context>The code must not contain multiple blank lines in a row.</context>
-        <line>39</line>
+        <line>36</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
@@ -152,17 +152,27 @@
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
         <context>The code must not contain multiple blank lines in a row.</context>
-        <line>72</line>
+        <line>42</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
         <context>The code must not contain multiple blank lines in a row.</context>
-        <line>73</line>
+        <line>43</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
+        <context>The code must not contain multiple blank lines in a row.</context>
+        <line>74</line>
+        <warning>False</warning>
+      </violation>
+      <violation namespace="StyleCop.CSharp.LayoutRules" rule="CodeMustNotContainMultipleBlankLinesInARow" ruleCheckId="SA1507">
+        <context>The code must not contain multiple blank lines in a row.</context>
+        <line>75</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.LayoutRules" rule="ClosingCurlyBracketsMustNotBePrecededByBlankLine" ruleCheckId="SA1508">
         <context>A closing curly bracket must not be preceded by a blank line.</context>
-        <line>74</line>
+        <line>76</line>
         <warning>False</warning>
       </violation>
     </violations>
@@ -223,7 +233,7 @@
     <timestamps>
       <styleCop>2014.10.05 23:15:45.473</styleCop>
       <settingsFile>2014.10.05 23:15:45.438</settingsFile>
-      <sourceFile>2014.10.05 19:02:25.664</sourceFile>
+      <sourceFile>2014.10.05 23:05:58.048</sourceFile>
       <parser>2014.10.05 23:15:45.473</parser>
       <StyleCop.CSharp.DocumentationRules>2014.10.05 23:15:45.473</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-542987802</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -252,7 +262,7 @@
     <timestamps>
       <styleCop>2014.10.05 23:15:45.473</styleCop>
       <settingsFile>2014.10.05 23:15:45.438</settingsFile>
-      <sourceFile>2014.10.05 19:02:25.664</sourceFile>
+      <sourceFile>2014.10.05 23:05:58.049</sourceFile>
       <parser>2014.10.05 23:15:45.473</parser>
       <StyleCop.CSharp.DocumentationRules>2014.10.05 23:15:45.473</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-542987802</StyleCop.CSharp.DocumentationRules.FilesHashCode>
@@ -281,7 +291,7 @@
     <timestamps>
       <styleCop>2014.10.05 23:15:45.473</styleCop>
       <settingsFile>2014.10.05 23:15:45.438</settingsFile>
-      <sourceFile>2014.10.05 19:02:25.665</sourceFile>
+      <sourceFile>2014.10.05 23:05:58.050</sourceFile>
       <parser>2014.10.05 23:15:45.473</parser>
       <StyleCop.CSharp.DocumentationRules>2014.10.05 23:15:45.473</StyleCop.CSharp.DocumentationRules>
       <StyleCop.CSharp.DocumentationRules.FilesHashCode>-542987802</StyleCop.CSharp.DocumentationRules.FilesHashCode>

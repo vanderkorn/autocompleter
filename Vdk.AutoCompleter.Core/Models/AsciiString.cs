@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
-using STSdb4.General.Comparers;
+using Vdk.AutoCompleter.Core.Comparers;
 using Vdk.AutoCompleter.Core.Services;
 
 namespace Vdk.AutoCompleter.Core.Models

@@ -8,7 +8,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Vdk.AutoCompleter.Common.IOC;
 using Vdk.AutoCompleter.Core;
 using Vdk.AutoCompleter.Core.Models;
+using Vdk.AutoCompleter.Core.Readers;
 using Vdk.AutoCompleter.Core.Services;
+using Vdk.AutoCompleter.Core.Writers;
 
 namespace Vdk.AutoCompleter.TestCore
 {

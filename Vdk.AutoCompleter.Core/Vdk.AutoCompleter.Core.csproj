@@ -47,29 +47,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoCompleteModule.cs" />
+    <Compile Include="Collections\ConcurrentList.cs" />
+    <Compile Include="Collections\ConcurrentSortedSet.cs" />
+    <Compile Include="Comparers\BigEndianByteArrayComparer.cs" />
+    <Compile Include="Comparers\BigEndianByteArrayEqualityComparer.cs" />
+    <Compile Include="Comparers\StringWordComparer.cs" />
+    <Compile Include="Comparers\WordComparer.cs" />
+    <Compile Include="Converters\AsciiWordValueConverter.cs" />
+    <Compile Include="Converters\IWordConverter.cs" />
+    <Compile Include="Converters\IWordValueConverter.cs" />
+    <Compile Include="Converters\WordValueConverter.cs" />
+    <Compile Include="Extensions\ByteArrayExtensions.cs" />
     <Compile Include="Models\AsciiChar.cs" />
     <Compile Include="Models\AsciiChars.cs" />
     <Compile Include="Models\AsciiString.cs" />
     <Compile Include="Models\Word.cs" />
+    <Compile Include="NGramGenerators\AsciiNGramParser.cs" />
+    <Compile Include="NGramGenerators\INGramParser.cs" />
+    <Compile Include="NGramGenerators\NGramParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AsciiNGramParser.cs" />
-    <Compile Include="Services\AsciiWordValueConverter.cs" />
+    <Compile Include="Readers\ConcurentVocabularyReader.cs" />
+    <Compile Include="Readers\IVocabularyReader.cs" />
+    <Compile Include="Readers\VocabularyReader.cs" />
     <Compile Include="Services\AutoCompleteService.cs" />
-    <Compile Include="Services\BigEndianByteArrayComparer.cs" />
-    <Compile Include="Services\BigEndianByteArrayEqualityComparer.cs" />
-    <Compile Include="Services\ByteArrayExtensions.cs" />
+    <Compile Include="Services\ConcurentAutoCompleteService.cs" />
     <Compile Include="Services\IAutoCompleteService.cs" />
-    <Compile Include="Services\INGramParser.cs" />
-    <Compile Include="Services\IVocabularyReader.cs" />
-    <Compile Include="Services\IVocabularyWriter.cs" />
-    <Compile Include="Services\IWordConverter.cs" />
-    <Compile Include="Services\IWordValueConverter.cs" />
-    <Compile Include="Services\NGramParser.cs" />
-    <Compile Include="Services\StringWordComparer.cs" />
-    <Compile Include="Services\VocabularyReader.cs" />
-    <Compile Include="Services\VocabularyWriter.cs" />
-    <Compile Include="Services\WordComparer.cs" />
-    <Compile Include="Services\WordValueConverter.cs" />
+    <Compile Include="Writers\IVocabularyWriter.cs" />
+    <Compile Include="Writers\ConcurentVocabularyWriter.cs" />
+    <Compile Include="Writers\VocabularyWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VDK.AutoCompleter.Common\Vdk.AutoCompleter.Common.csproj">
