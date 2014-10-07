@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using STSdb4.General.Comparers;
 using Vdk.AutoCompleter.Core.Models;
 
 namespace Vdk.AutoCompleter.Core.Services
@@ -41,16 +42,18 @@ namespace Vdk.AutoCompleter.Core.Services
 
     public class ComparerFactory: IComparerFactory<string>
     {
+        private readonly StringWordComparer _instance = new StringWordComparer();
         public IComparer<Word<string>> GetComparer() 
         {
-                return new StringWordComparer();
+            return _instance;
         }
     }
     public class AsciiComparerFactory : IComparerFactory<AsciiString>
     {
+        private readonly WordComparer _instance = new WordComparer();
         public IComparer<Word<AsciiString>> GetComparer()
         {
-            return new WordComparer();
+            return _instance;
         }
     }
 

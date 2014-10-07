@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Vdk.AutoCompleter.Core.Models;
 
 namespace Vdk.AutoCompleter.Core.Services
@@ -15,7 +16,7 @@ namespace Vdk.AutoCompleter.Core.Services
 
             if (resultCompare > 0)
                 return -1;
-
+            
             return String.Compare(x.Value, y.Value, StringComparison.Ordinal);
         }
     }

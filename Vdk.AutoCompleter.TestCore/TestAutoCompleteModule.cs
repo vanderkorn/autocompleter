@@ -42,7 +42,7 @@ namespace Vdk.AutoCompleter.TestCore
            Stopwatch stopwatch = new Stopwatch();
            stopwatch.Start();
 
-            var reader = ServiceLocator.Resolve<IVocabularyReader<string>>();
+           var reader = ServiceLocator.Resolve<IVocabularyReader<string>>();
             reader.AddVocabulary(File.OpenText(@"Data\test.in"));
 
             stopwatch.Stop();

@@ -55,6 +55,9 @@
     <Compile Include="Services\AsciiNGramParser.cs" />
     <Compile Include="Services\AsciiWordValueConverter.cs" />
     <Compile Include="Services\AutoCompleteService.cs" />
+    <Compile Include="Services\BigEndianByteArrayComparer.cs" />
+    <Compile Include="Services\BigEndianByteArrayEqualityComparer.cs" />
+    <Compile Include="Services\ByteArrayExtensions.cs" />
     <Compile Include="Services\IAutoCompleteService.cs" />
     <Compile Include="Services\INGramParser.cs" />
     <Compile Include="Services\IVocabularyReader.cs" />

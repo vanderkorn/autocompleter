@@ -1,10 +1,15 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
+using STSdb4.General.Comparers;
+using Vdk.AutoCompleter.Core.Services;
 
 namespace Vdk.AutoCompleter.Core.Models
 {
+
     public sealed class AsciiString : IEnumerable<AsciiChar>, IComparable<AsciiString>, IEquatable<AsciiString>
     {
         public static readonly AsciiString Empty;
@@ -50,7 +55,8 @@ namespace Vdk.AutoCompleter.Core.Models
 
         public static int Compare(AsciiString strA, AsciiString strB)
         {
-            return Compare(strA, strB, false);
+  
+          return Compare(strA, strB, false);
         }
         public static int Compare(AsciiString strA, AsciiString strB, bool ignoreCase)
         {
@@ -66,7 +72,13 @@ namespace Vdk.AutoCompleter.Core.Models
             //if (strA == null) throw new ArgumentNullException("strA");
             //if (strB == null) throw new ArgumentNullException("strB");
 
-            return SafeCompare(strA, 0, strB, 0, Math.Max(strA.data.Length, strB.data.Length), ignoreCase);
+        
+            if (ignoreCase)
+            {
+                return SafeCompare(strA, 0, strB, 0, Math.Max(strA.data.Length, strB.data.Length), ignoreCase);
+            }
+            return BigEndianByteArrayComparer.Instance.Compare(strA.data, strB.data);
+            //return FastSafeCompare(strA, strB, Math.Max(strA.data.Length, strB.data.Length));
         }
         public static int Compare(AsciiString strA, int indexA, AsciiString strB, int indexB, int length)
         {
@@ -82,6 +94,31 @@ namespace Vdk.AutoCompleter.Core.Models
 
             return SafeCompare(strA, indexA, strB, indexB, length, ignoreCase);
         }
+        private static int FastSafeCompare(AsciiString strA,  AsciiString strB,  int length)
+        {
+            for (var i = 0; i < length; i++)
+            {
+                var iIsEqualLengthA = (i == strA.data.Length);
+                var iIsEqualLengthB = (i == strB.data.Length);
+
+                if (iIsEqualLengthA && iIsEqualLengthB)
+                    return 0;
+
+                if (iIsEqualLengthA) return -1;
+
+                if (iIsEqualLengthB) return 1;
+
+                var byteA = strA.data[i];
+                var byteB = strB.data[i];
+
+
+                if (byteA < byteB) return -1;
+                if (byteB < byteA) return 1;
+            }
+
+            return 0;
+        }
+
         private static int SafeCompare(AsciiString strA, int indexA, AsciiString strB, int indexB, int length, bool ignoreCase)
         {
             for (int i = 0; i < length; i++)
@@ -257,7 +294,8 @@ namespace Vdk.AutoCompleter.Core.Models
         public int CompareTo(AsciiString value)
         {
             if (value == null) throw new ArgumentNullException("value");
-            return AsciiString.Compare(this, value);
+        return AsciiString.Compare(this, value);
+  
         }
         public bool Contains(AsciiString value)
         {
@@ -300,30 +338,80 @@ namespace Vdk.AutoCompleter.Core.Models
         }
         public bool Equals(AsciiString value)
         {
-            return this.CompareTo(value) == 0;
+            //    return GetHashCode() == value.GetHashCode();
+         //  if (value == null) throw new ArgumentNullException("value");
+            // return equals1(data, value.data);
+            //   return StructuralComparisons.StructuralEqualityComparer.Equals(data, value.data);
+
+      //    return data.SequenceEqual(value.data);
+             // return data.SequenceEqual<byte[]>(value.data, new BigEndianByteArrayEqualityComparer());
+          return BigEndianByteArrayEqualityComparer.Instance.Equals(data, value.data);
+            //return CompareTo(value) == 0;
         }
+        public static bool equals1(byte[] a1, byte[] a2)
+        {
+            if (a1 == a2)
+            {
+                return true;
+            }
+            if ((a1 != null) && (a2 != null))
+            {
+                if (a1.Length != a2.Length)
+                {
+                    return false;
+                }
+                for (int i = 0; i < a1.Length; i++)
+                {
+                    if (a1[i] != a2[i])
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
         public override int GetHashCode()
         {
             return ComputeHash(this.data);
         }
         public static int ComputeHash(params byte[] data)
         {
+
             unchecked
             {
-                const int p = 16777619;
-                int hash = (int)2166136261;
+                int hash = 17;
 
-                for (int i = 0; i < data.Length; i++)
-                    hash = (hash ^ data[i]) * p;
-
-                hash += hash << 13;
-                hash ^= hash >> 7;
-                hash += hash << 3;
-                hash ^= hash >> 17;
-                hash += hash << 5;
+                // Cycle through each element in the array.
+                foreach (var b in data)
+                {
+                    // Update the hash.
+                    hash = hash * 23 + b.GetHashCode();
+                }
                 return hash;
             }
+
         }
+        //public static int ComputeHash(params byte[] data)
+        //{
+        //    return data.GetHashCodeEx();
+        //    //unchecked
+        //    //{
+        //    //    const int p = 16777619;
+        //    //    int hash = (int)2166136261;
+
+        //    //    for (int i = 0; i < data.Length; i++)
+        //    //        hash = (hash ^ data[i]) * p;
+
+        //    //    hash += hash << 13;
+        //    //    hash ^= hash >> 7;
+        //    //    hash += hash << 3;
+        //    //    hash ^= hash >> 17;
+        //    //    hash += hash << 5;
+        //    //    return hash;
+        //    //}
+        //}
 
         public int IndexOf(AsciiString value)
         {

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Vdk.AutoCompleter.Core.Models;
 
 namespace Vdk.AutoCompleter.Core.Services
@@ -19,8 +21,11 @@ namespace Vdk.AutoCompleter.Core.Services
         {
             var startIndex = Math.Min(word.Length, _minLength);
             var length = Math.Min(word.Length, _maxLength);
-            for (var i = startIndex; i < length; i++)
-                yield return word.Substring(0, i);
+            var list = new ConcurrentBag<AsciiString>();
+            Parallel.For(startIndex, length, i => list.Add(word.Substring(0, i)));
+            return list;
+            //for (var i = startIndex; i < length; i++)
+            //    yield return word.Substring(0, i);
         }
     }
 }

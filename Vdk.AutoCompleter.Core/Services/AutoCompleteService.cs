@@ -26,7 +26,8 @@ namespace Vdk.AutoCompleter.Core.Services
 
         public void AddWordToVocabulary(Word<T> word)
         {
-            foreach (var lexem in _nGramParser.GetLexemes(word.Value))
+            var r = _nGramParser.GetLexemes(word.Value).ToList();
+            foreach (var lexem in r)
             {
                 if (_vocabulary.ContainsKey(lexem))
                 {
@@ -50,9 +51,7 @@ namespace Vdk.AutoCompleter.Core.Services
 
         public IEnumerable<Word<T>> GetWordsByPrefix(T prefix)
         {
-            if (_vocabulary.ContainsKey(prefix))
-                return _vocabulary[prefix].Take(10);
-            return null;
+            return _vocabulary.ContainsKey(prefix) ? _vocabulary[prefix].Take(10) : null;
         }
 
         public void SetCountWords(uint count)
