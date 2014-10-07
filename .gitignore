@@ -8,3 +8,5 @@ obj
 /Vdk.AutoCompleter.Common/*.Cache
 /Vdk.AutoCompleter.TestClient/StyleCop.Cache
 /Vdk.AutoCompleter.TestCore/*.Cache
+/Vdk.AutoCompleter.TestClient/*.user
+/Vdk.AutoCompleter.Core/*.user
