@@ -6,3 +6,5 @@ bin
 obj
 /*.user
 /Vdk.AutoCompleter.Common/*.Cache
+/Vdk.AutoCompleter.TestClient/StyleCop.Cache
+/Vdk.AutoCompleter.TestCore/*.Cache
