@@ -10,3 +10,4 @@ obj
 /Vdk.AutoCompleter.TestCore/*.Cache
 /Vdk.AutoCompleter.TestClient/*.user
 /Vdk.AutoCompleter.Core/*.user
+/CustomTextEncoder/*.user
