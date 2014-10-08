@@ -11,3 +11,4 @@ obj
 /Vdk.AutoCompleter.TestClient/*.user
 /Vdk.AutoCompleter.Core/*.user
 /CustomTextEncoder/*.user
+/Vdk.AutoCompleter.Wcf.Client/*.user
