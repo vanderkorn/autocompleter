@@ -22,6 +22,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AF8AD8BD
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{F52EA672-7931-4207-B634-042E98173BE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vdk.AutoCompleter.Wcf.Service", "Vdk.AutoCompleter.Wcf.Service\Vdk.AutoCompleter.Wcf.Service.csproj", "{00EF1342-559C-4EF4-89DE-4654D21292D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vdk.AutoCompleter.Wcf.Client", "Vdk.AutoCompleter.Wcf.Client\Vdk.AutoCompleter.Wcf.Client.csproj", "{F265A6EC-56AD-4A5A-A03F-23D4EE149824}"
+	ProjectSection(ProjectDependencies) = postProject
+		{00EF1342-559C-4EF4-89DE-4654D21292D9} = {00EF1342-559C-4EF4-89DE-4654D21292D9}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vdk.AutoCompleter.Wcf.Server", "Vdk.AutoCompleter.Wcf.Server\Vdk.AutoCompleter.Wcf.Server.csproj", "{E489DDF0-89CA-4AA8-B3F8-51F56195BBEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomTextEncoder", "CustomTextEncoder\CustomTextEncoder.csproj", "{809083E6-CFDB-419F-B994-955509541251}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +55,22 @@ Global
 		{A09F608E-2705-4BF2-8647-74DD82C4B4FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A09F608E-2705-4BF2-8647-74DD82C4B4FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A09F608E-2705-4BF2-8647-74DD82C4B4FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00EF1342-559C-4EF4-89DE-4654D21292D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00EF1342-559C-4EF4-89DE-4654D21292D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00EF1342-559C-4EF4-89DE-4654D21292D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00EF1342-559C-4EF4-89DE-4654D21292D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F265A6EC-56AD-4A5A-A03F-23D4EE149824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F265A6EC-56AD-4A5A-A03F-23D4EE149824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F265A6EC-56AD-4A5A-A03F-23D4EE149824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F265A6EC-56AD-4A5A-A03F-23D4EE149824}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E489DDF0-89CA-4AA8-B3F8-51F56195BBEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E489DDF0-89CA-4AA8-B3F8-51F56195BBEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E489DDF0-89CA-4AA8-B3F8-51F56195BBEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E489DDF0-89CA-4AA8-B3F8-51F56195BBEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{809083E6-CFDB-419F-B994-955509541251}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{809083E6-CFDB-419F-B994-955509541251}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{809083E6-CFDB-419F-B994-955509541251}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{809083E6-CFDB-419F-B994-955509541251}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,5 +79,6 @@ Global
 		{FACF102B-E125-4782-AEAF-8C504C8DF050} = {F52EA672-7931-4207-B634-042E98173BE9}
 		{386FF018-2DCA-4C76-A565-1CDB39770027} = {F52EA672-7931-4207-B634-042E98173BE9}
 		{A09F608E-2705-4BF2-8647-74DD82C4B4FE} = {AF8AD8BD-72A3-4DA3-B515-34CFFFB92F9E}
+		{809083E6-CFDB-419F-B994-955509541251} = {F52EA672-7931-4207-B634-042E98173BE9}
 	EndGlobalSection
 EndGlobal
