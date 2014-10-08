@@ -18,6 +18,7 @@ namespace Vdk.AutoCompleter.Wcf.Server
 {
     class Program
     {
+        private const int Throughput = 10;
         static void Main(string[] args)
         {
             CoreInitializer.Initialize(Dependencies);
@@ -44,7 +45,7 @@ namespace Vdk.AutoCompleter.Wcf.Server
 
 
                         selfHost.AddServiceEndpoint(typeof(IAutoCompleteWcfService), binding, "");
-
+                
                         var smb = new ServiceMetadataBehavior { HttpGetEnabled = false, HttpsGetEnabled = false };
                         selfHost.Description.Behaviors.Add(smb);
 
@@ -52,6 +53,14 @@ namespace Vdk.AutoCompleter.Wcf.Server
                         selfHost.AddServiceEndpoint(typeof(IMetadataExchange), mexBinding, "mex");
 
                         selfHost.AddDependencyInjectionBehavior<IAutoCompleteWcfService>(ServiceLocator.GetContainer());
+
+                        var throttleBehavior = new ServiceThrottlingBehavior
+                        {
+                            MaxConcurrentCalls = Throughput,
+                            MaxConcurrentInstances = 20,
+                            MaxConcurrentSessions = Throughput,
+                        };
+                        selfHost.Description.Behaviors.Add(throttleBehavior);
 
                         selfHost.Open();
                         Console.WriteLine("The service is ready.");
