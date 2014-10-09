@@ -2,6 +2,7 @@
 using System.IO;
 using Autofac;
 using Thrift;
+using Thrift.Protocol;
 using Thrift.Server;
 using Thrift.Transport;
 using Vdk.AutoCompleter.Common.IOC;
@@ -32,11 +33,21 @@ namespace Vdk.AutoCompleter.Thrift.Server
 
                         var service = new AutoCompleteServiceImplementation();
                         TProcessor processor = new AutoCompleteService.Processor(service);
-                        TServerTransport transport = new TServerSocket(options.Port, 10000);
+                        TServerTransport transport = new TServerSocket(options.Port);
 
                         //var server = new TSimpleServer(processor, transport);
-                        var server = new TThreadPoolServer(processor, transport);
-
+                        var server = new TThreadPoolServer(processor, transport,
+                            new TTransportFactory(), 
+                            new TTransportFactory(),
+                            new TBinaryProtocol.Factory(), 
+                            new TBinaryProtocol.Factory(),
+                            1,
+                            Throughput,
+                            (t) =>
+                            {
+                                
+                            });
+                   
                         Console.WriteLine("The service is ready.");
                         server.Serve();
 
@@ -52,7 +63,6 @@ namespace Vdk.AutoCompleter.Thrift.Server
                     {
                         Console.WriteLine("An exception occurred: {0}", ce.Message);
                     }
-
                 }
             }
         }
