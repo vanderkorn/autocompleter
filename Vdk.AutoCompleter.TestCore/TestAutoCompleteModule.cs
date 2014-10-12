@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Vdk.AutoCompleter.Common.IOC;
@@ -301,5 +302,129 @@ namespace Vdk.AutoCompleter.TestCore
                 Assert.IsTrue(result.SequenceEqual(expectedResult[prefix]));
             }
         }
+
+        [TestMethod]
+        [DeploymentItem(@"test.in")]
+        [DeploymentItem(@"Data\", "Data")]
+        public void TestModuleThreadExample()
+        {
+            var autoCompleteService = ServiceLocator.Resolve<IAutoCompleteService<string>>();
+            var words = new List<Word<string>>
+            {
+                new Word<string>()
+                {
+                    Value = "kare",
+                    Frequency = 10
+                },
+                new Word<string>()
+                {
+                    Value = "kanojo",
+                    Frequency = 20
+                },
+                 new Word<string>()
+                {
+                    Value = "karetachi",
+                    Frequency = 1
+                },
+                  new Word<string>()
+                {
+                    Value = "korosu",
+                    Frequency = 7
+                },
+                new Word<string>()
+                {
+                    Value = "sakura",
+                    Frequency = 3
+                }
+            };
+
+            Parallel.ForEach(words, autoCompleteService.AddWordToVocabulary);
+
+
+            var prefixes = new List<string>
+            {
+                "k",
+                "ka",
+                "kar"
+            };
+
+            var expectedResult = new Dictionary<string, List<string>>()
+            {
+               {prefixes[0] , new List<string>(){words[1].Value, words[0].Value, words[3].Value, words[2].Value}},
+               {prefixes[1] , new List<string>(){words[1].Value, words[0].Value, words[2].Value}},
+               {prefixes[2] , new List<string>(){ words[0].Value, words[2].Value}},
+
+            };
+            Parallel.ForEach(prefixes, prefix =>
+            {
+                var res = autoCompleteService.GetWordsByPrefix(prefix);
+                Assert.IsNotNull(res);
+                var result = res.Select(w => w.Value).ToList();
+                Assert.IsTrue(result.Count == expectedResult[prefix].Count);
+                Assert.IsTrue(result.SequenceEqual(expectedResult[prefix]));
+            });
+        }
+        [TestMethod]
+        [DeploymentItem(@"test.in")]
+        [DeploymentItem(@"Data\", "Data")]
+        public void TestModuleThreadExample2()
+        {
+            var autoCompleteService = ServiceLocator.Resolve<IAutoCompleteService<AsciiString>>();
+            var words = new List<Word<AsciiString>>
+            {
+                new Word<AsciiString>()
+                {
+                    Value = "kare",
+                    Frequency = 10
+                },
+                new Word<AsciiString>()
+                {
+                    Value = "kanojo",
+                    Frequency = 20
+                },
+                 new Word<AsciiString>()
+                {
+                    Value = "karetachi",
+                    Frequency = 1
+                },
+                  new Word<AsciiString>()
+                {
+                    Value = "korosu",
+                    Frequency = 7
+                },
+                new Word<AsciiString>()
+                {
+                    Value = "sakura",
+                    Frequency = 3
+                }
+            };
+
+            Parallel.ForEach(words, autoCompleteService.AddWordToVocabulary);
+
+            var prefixes = new List<AsciiString>
+            {
+                "k",
+                "ka",
+                "kar"
+            };
+
+            var expectedResult = new Dictionary<AsciiString, List<AsciiString>>()
+            {
+               {prefixes[0] , new List<AsciiString>(){words[1].Value, words[0].Value, words[3].Value, words[2].Value}},
+               {prefixes[1] , new List<AsciiString>(){words[1].Value, words[0].Value, words[2].Value}},
+               {prefixes[2] , new List<AsciiString>(){ words[0].Value, words[2].Value}},
+
+            };
+
+            Parallel.ForEach(prefixes, prefix =>
+            {
+                var res = autoCompleteService.GetWordsByPrefix(prefix);
+                Assert.IsNotNull(res);
+                var result = res.Select(w => w.Value).ToList();
+                Assert.IsTrue(result.Count == expectedResult[prefix].Count);
+                Assert.IsTrue(result.SequenceEqual(expectedResult[prefix]));
+            });
+        }
+
     }
 }
