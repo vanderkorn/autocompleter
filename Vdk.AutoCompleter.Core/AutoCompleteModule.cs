@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Autofac;
-using Vdk.AutoCompleter.Common.IOC;
+﻿using Autofac;
 using Vdk.AutoCompleter.Core.Comparers;
 using Vdk.AutoCompleter.Core.Converters;
 using Vdk.AutoCompleter.Core.Models;
