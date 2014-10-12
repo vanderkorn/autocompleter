@@ -47,6 +47,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vdk.AutoCompleter.Wcf.Serve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vdk.AutoCompleter.Wcf.ClientModule", "Vdk.AutoCompleter.Wcf.ClientModule\Vdk.AutoCompleter.Wcf.ClientModule.csproj", "{C2C233B7-3407-44C6-BE1C-575CE10593C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vdk.AutoCompleter.Thrift.TestServer", "Vdk.AutoCompleter.Thrift.TestServer\Vdk.AutoCompleter.Thrift.TestServer.csproj", "{C437173D-93F8-4AAE-A8A2-160C01EACF34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vdk.AutoCompleter.Wcf.TestServer", "Vdk.AutoCompleter.Wcf.TestServer\Vdk.AutoCompleter.Wcf.TestServer.csproj", "{9BD34C0F-E3A2-4355-A802-97DAD078F76D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -147,6 +151,18 @@ Global
 		{C2C233B7-3407-44C6-BE1C-575CE10593C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2C233B7-3407-44C6-BE1C-575CE10593C6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C2C233B7-3407-44C6-BE1C-575CE10593C6}.Release|x86.ActiveCfg = Release|Any CPU
+		{C437173D-93F8-4AAE-A8A2-160C01EACF34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C437173D-93F8-4AAE-A8A2-160C01EACF34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C437173D-93F8-4AAE-A8A2-160C01EACF34}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C437173D-93F8-4AAE-A8A2-160C01EACF34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C437173D-93F8-4AAE-A8A2-160C01EACF34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C437173D-93F8-4AAE-A8A2-160C01EACF34}.Release|x86.ActiveCfg = Release|Any CPU
+		{9BD34C0F-E3A2-4355-A802-97DAD078F76D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BD34C0F-E3A2-4355-A802-97DAD078F76D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BD34C0F-E3A2-4355-A802-97DAD078F76D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9BD34C0F-E3A2-4355-A802-97DAD078F76D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BD34C0F-E3A2-4355-A802-97DAD078F76D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BD34C0F-E3A2-4355-A802-97DAD078F76D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -162,5 +178,7 @@ Global
 		{1E1369C2-155E-4300-9233-2858631851D1} = {F52EA672-7931-4207-B634-042E98173BE9}
 		{7F8AA918-39F3-4AC1-B9E4-F5DE3D9BA830} = {F52EA672-7931-4207-B634-042E98173BE9}
 		{C2C233B7-3407-44C6-BE1C-575CE10593C6} = {F52EA672-7931-4207-B634-042E98173BE9}
+		{C437173D-93F8-4AAE-A8A2-160C01EACF34} = {AF8AD8BD-72A3-4DA3-B515-34CFFFB92F9E}
+		{9BD34C0F-E3A2-4355-A802-97DAD078F76D} = {AF8AD8BD-72A3-4DA3-B515-34CFFFB92F9E}
 	EndGlobalSection
 EndGlobal
