@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AF8AD8BD
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{F52EA672-7931-4207-B634-042E98173BE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vdk.AutoCompleter.Wcf.Service", "Vdk.AutoCompleter.Wcf.Service\Vdk.AutoCompleter.Wcf.Service.csproj", "{00EF1342-559C-4EF4-89DE-4654D21292D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vdk.AutoCompleter.Wcf.Core", "Vdk.AutoCompleter.Wcf.Core\Vdk.AutoCompleter.Wcf.Core.csproj", "{00EF1342-559C-4EF4-89DE-4654D21292D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vdk.AutoCompleter.Wcf.Client", "Vdk.AutoCompleter.Wcf.Client\Vdk.AutoCompleter.Wcf.Client.csproj", "{F265A6EC-56AD-4A5A-A03F-23D4EE149824}"
 	ProjectSection(ProjectDependencies) = postProject
