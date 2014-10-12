@@ -1,15 +1,10 @@
-﻿using System;
-using System.IO;
-using Autofac;
-using Thrift;
-using Thrift.Protocol;
-using Thrift.Server;
-using Thrift.Transport;
+﻿using Autofac;
+using Vdk.AutoCompleter.Common;
 using Vdk.AutoCompleter.Common.IOC;
+using Vdk.AutoCompleter.Common.Loggers;
 using Vdk.AutoCompleter.Core;
-using Vdk.AutoCompleter.Core.Readers;
-using Vdk.AutoCompleter.Thrift.Core;
 using Vdk.AutoCompleter.Thrift.Server.Models;
+using Vdk.AutoCompleter.Thrift.ServerModule;
 
 namespace Vdk.AutoCompleter.Thrift.Server
 {
@@ -18,51 +13,16 @@ namespace Vdk.AutoCompleter.Thrift.Server
         private const int Throughput = 10;
         static void Main(string[] args)
         {
-            CoreInitializer.Initialize(Dependencies);
             var options = new Options();
             // Parse in 'strict mode', success or quit
             if (CommandLine.Parser.Default.ParseArgumentsStrict(args, options))
-            {
-                using (var lifetime = ServiceLocator.GetContainer().BeginLifetimeScope())
+            {   
+                CoreInitializer.Initialize(Dependencies);
+                using (var scope = ServiceLocator.GetContainer().BeginLifetimeScope())
                 {
-                    var reader = lifetime.Resolve<IVocabularyReader<string>>();
-                    reader.AddVocabulary(File.OpenText(options.InputFile));
-                   
-                    try
-                    {
-
-                        var service = new AutoCompleteServiceImplementation();
-                        TProcessor processor = new AutoCompleteService.Processor(service);
-                        TServerTransport transport = new TServerSocket(options.Port);
-
-                        //var server = new TSimpleServer(processor, transport);
-                        var server = new TThreadPoolServer(processor, transport,
-                            new TTransportFactory(), 
-                            new TTransportFactory(),
-                            new TBinaryProtocol.Factory(), 
-                            new TBinaryProtocol.Factory(),
-                            1,
-                            Throughput,
-                            (t) =>
-                            {
-                                
-                            });
-                   
-                        Console.WriteLine("The service is ready.");
-                        server.Serve();
-
-                        //Console.WriteLine("The service is ready.");
-                        //Console.WriteLine("Press <ENTER> to terminate service.");
-                        //Console.WriteLine();
-                        //Console.ReadLine();
-
-                        // Close the ServiceHostBase to shutdown the service.
-                        server.Stop();
-                    }
-                    catch (Exception ce)
-                    {
-                        Console.WriteLine("An exception occurred: {0}", ce.Message);
-                    }
+                    var app = scope.Resolve<IApplicationServer>();
+                    app.Throughput = Throughput;
+                    app.Run(options.InputFile, options.Port);
                 }
             }
         }
@@ -70,6 +30,8 @@ namespace Vdk.AutoCompleter.Thrift.Server
         private static void Dependencies(ContainerBuilder builder)
         {
             builder.RegisterModule(new AutoCompleteModule());
+            builder.RegisterModule(new NLogModule());
+            builder.RegisterModule(new ThriftServerApplicationModule());
         }
     }
 }

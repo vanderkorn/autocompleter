@@ -34,16 +34,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="CommandLine">
       <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -52,48 +52,19 @@
     <Compile Include="Models\Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\AutoCompleteWcfService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Service References\AutoCompleteWcfService\Arrays.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AutoCompleteWcfService\service.wsdl" />
-    <None Include="Service References\AutoCompleteWcfService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AutoCompleteWcfService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\AutoCompleteWcfService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\AutoCompleteWcfService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\AutoCompleteWcfService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\AutoCompleteWcfService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CustomTextEncoder\CustomTextEncoder.csproj">
-      <Project>{809083e6-cfdb-419f-b994-955509541251}</Project>
-      <Name>CustomTextEncoder</Name>
+    <ProjectReference Include="..\Vdk.AutoCompleter.Common\Vdk.AutoCompleter.Common.csproj">
+      <Project>{386ff018-2dca-4c76-a565-1cdb39770027}</Project>
+      <Name>Vdk.AutoCompleter.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vdk.AutoCompleter.Wcf.ClientModule\Vdk.AutoCompleter.Wcf.ClientModule.csproj">
+      <Project>{c2c233b7-3407-44c6-be1c-575ce10593c6}</Project>
+      <Name>Vdk.AutoCompleter.Wcf.ClientModule</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

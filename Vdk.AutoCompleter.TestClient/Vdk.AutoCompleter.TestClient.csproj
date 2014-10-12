@@ -54,8 +54,7 @@
     <Compile Include="Models\Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IBatchPrefixService.cs" />
-    <Compile Include="Services\BatchPrefixService.cs" />
+    <Compile Include="Services\ApplicationTestClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

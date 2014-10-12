@@ -36,6 +36,9 @@
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IApplicationClient.cs" />
+    <Compile Include="IApplicationServer.cs" />
+    <Compile Include="IApplicationTestClient.cs" />
     <Compile Include="IOC\CoreInitializer.cs" />
     <Compile Include="IOC\IDependency.cs" />
     <Compile Include="IOC\ISingletonDependency.cs" />
@@ -52,6 +58,8 @@
     <Compile Include="IOC\IUnitOfWorkDependency.cs" />
     <Compile Include="IOC\ResolveDependenciesSource.cs" />
     <Compile Include="IOC\ServiceLocator.cs" />
+    <Compile Include="Loggers\LogModule.cs" />
+    <Compile Include="Loggers\NLogModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

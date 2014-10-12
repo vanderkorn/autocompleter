@@ -34,14 +34,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac.Integration.Wcf">
-      <HintPath>..\packages\Autofac.Wcf.3.0.1\lib\net40\Autofac.Integration.Wcf.dll</HintPath>
     </Reference>
     <Reference Include="CommandLine">
       <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -64,13 +66,12 @@
     <None Include="Data\test.in">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CustomTextEncoder\CustomTextEncoder.csproj">
-      <Project>{809083e6-cfdb-419f-b994-955509541251}</Project>
-      <Name>CustomTextEncoder</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Vdk.AutoCompleter.Common\Vdk.AutoCompleter.Common.csproj">
       <Project>{386ff018-2dca-4c76-a565-1cdb39770027}</Project>
       <Name>Vdk.AutoCompleter.Common</Name>
@@ -79,9 +80,9 @@
       <Project>{facf102b-e125-4782-aeaf-8c504c8df050}</Project>
       <Name>Vdk.AutoCompleter.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Vdk.AutoCompleter.Wcf.Service\Vdk.AutoCompleter.Wcf.Service.csproj">
-      <Project>{00ef1342-559c-4ef4-89de-4654d21292d9}</Project>
-      <Name>Vdk.AutoCompleter.Wcf.Service</Name>
+    <ProjectReference Include="..\Vdk.AutoCompleter.Wcf.ServerModule\Vdk.AutoCompleter.Wcf.ServerModule.csproj">
+      <Project>{7f8aa918-39f3-4ac1-b9e4-f5de3d9ba830}</Project>
+      <Name>Vdk.AutoCompleter.Wcf.ServerModule</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

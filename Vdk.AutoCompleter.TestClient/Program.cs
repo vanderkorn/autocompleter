@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
 using Autofac;
+using Vdk.AutoCompleter.Common;
 using Vdk.AutoCompleter.Common.IOC;
 using Vdk.AutoCompleter.Core;
+using Vdk.AutoCompleter.Core.Models;
 using Vdk.AutoCompleter.TestClient.Models;
 using Vdk.AutoCompleter.TestClient.Services;
 
@@ -19,7 +21,7 @@ namespace Vdk.AutoCompleter.TestClient
             {
                 using (var lifetime = ServiceLocator.GetContainer().BeginLifetimeScope())
                 {
-                    var module = lifetime.Resolve<IBatchPrefixService>();
+                    var module = lifetime.Resolve<IApplicationTestClient<AsciiString>>();
                
                     if (!string.IsNullOrWhiteSpace(options.InputFile))
                     {
@@ -37,6 +39,9 @@ namespace Vdk.AutoCompleter.TestClient
         private static void Dependencies(ContainerBuilder builder)
         {
             builder.RegisterModule(new AutoCompleteModule());
+            builder.RegisterGeneric(typeof(ApplicationTestClient<>))
+             .As(typeof(IApplicationTestClient<>))
+             .InstancePerDependency();
         }
     }
 }

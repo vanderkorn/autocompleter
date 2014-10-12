@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Thrift.Protocol;
-using Thrift.Transport;
+using Autofac;
+using Vdk.AutoCompleter.Common;
+using Vdk.AutoCompleter.Common.IOC;
 using Vdk.AutoCompleter.Thrift.Client.Models;
-using Vdk.AutoCompleter.Thrift.Core;
+using Vdk.AutoCompleter.Thrift.ClientModule;
 
 namespace Vdk.AutoCompleter.Thrift.Client
 {
@@ -18,38 +16,41 @@ namespace Vdk.AutoCompleter.Thrift.Client
             // Parse in 'strict mode', success or quit
             if (CommandLine.Parser.Default.ParseArgumentsStrict(args, options))
             {
-                TTransport transport = new TSocket(options.Host, options.Port);
-                transport.Open();
-
-                var proto = new TBinaryProtocol(transport);
-                var client = new AutoCompleteService.Client(proto);     
-
-             
-                while (true)
+                CoreInitializer.Initialize(Dependencies);
+                using (var scope = ServiceLocator.GetContainer().BeginLifetimeScope())
                 {
-                    var line = Console.ReadLine();
-                    if (!string.IsNullOrWhiteSpace(line))
+                    var app = scope.Resolve<IApplicationClient<string>>();
+                    app.Connect(options.Host, options.Port);
+                    while (true)
                     {
-                        if (line == "exit")
-                            break;
-                        var arr = line.Split(' ');
-                        if (arr.Length < 2 || arr[0] != "get")
-                            continue;
-                        var response = client.Get(arr[1]);
-                        if (response != null)
+                        var line = Console.ReadLine();
+                        if (!string.IsNullOrWhiteSpace(line))
                         {
-                            if (response.Any())
+                            if (line == "exit")
+                                break;
+                            var arr = line.Split(' ');
+                            if (arr.Length < 2 || arr[0] != "get")
+                                continue;
+                            var response = app.Get(arr[1]);
+                            if (response != null)
                             {
-                                foreach (var val in response)
-                                    Console.WriteLine(val);
-                                Console.WriteLine();
+                                if (response.Any())
+                                {
+                                    foreach (var val in response)
+                                        Console.WriteLine(val);
+                                    Console.WriteLine();
+                                }
                             }
                         }
-                    }
 
+                    }
                 }
-                client.Dispose();
+
             }
+        }
+        private static void Dependencies(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new ThriftClientApplicationModule());
         }
     }
 }

@@ -5,11 +5,14 @@ using Vdk.AutoCompleter.Core.Services;
 
 namespace Vdk.AutoCompleter.Wcf.Service
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)] 
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple)] 
     public class AutoCompleteWcfService : IAutoCompleteWcfService
     {
         private readonly IAutoCompleteService<string> _autoCompleteService;
 
+        //public AutoCompleteWcfService()
+        //{
+        //}
         public AutoCompleteWcfService(IAutoCompleteService<string> autoCompleteService)
         {
             _autoCompleteService = autoCompleteService;

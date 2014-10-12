@@ -8,6 +8,6 @@ namespace Vdk.AutoCompleter.Wcf.Server.Models
         public string InputFile { get; set; }
 
         [Option('p', "port", Required = true, HelpText = "Input port.")]
-        public string Port { get; set; }
+        public int Port { get; set; }
     }
 }
