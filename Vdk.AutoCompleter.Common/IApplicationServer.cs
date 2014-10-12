@@ -9,5 +9,6 @@ namespace Vdk.AutoCompleter.Common
         Logger Logger { get; set; }
         int Throughput { get; set; }
         void Run(string inputFile, int port);
+        void Stop();
     }
 }

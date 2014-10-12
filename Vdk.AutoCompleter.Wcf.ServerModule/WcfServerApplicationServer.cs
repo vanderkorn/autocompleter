@@ -17,6 +17,8 @@ namespace Vdk.AutoCompleter.Wcf.ServerModule
     public class WcfServerApplicationServer : IApplicationServer
     {
         private readonly IVocabularyReader<string> _reader;
+        private ServiceHost _selfHost;
+
         public WcfServerApplicationServer(IVocabularyReader<string> reader)
         {
             _reader = reader;
@@ -28,7 +30,7 @@ namespace Vdk.AutoCompleter.Wcf.ServerModule
         {
             _reader.AddVocabulary(File.OpenText(inputFile));
             var baseAddress = new Uri(string.Format("net.tcp://localhost:{0}/AutoCompleteWcfService", port));
-            var selfHost = new ServiceHost(typeof(AutoCompleteWcfService), baseAddress);
+             _selfHost = new ServiceHost(typeof(AutoCompleteWcfService), baseAddress);
             try
             {
                 //selfHost.AddServiceEndpoint(typeof(IAutoCompleteWcfService), new NetTcpBinding(), "");
@@ -41,15 +43,15 @@ namespace Vdk.AutoCompleter.Wcf.ServerModule
                 var binding = new CustomBinding(bindingElements);
 
 
-                selfHost.AddServiceEndpoint(typeof(IAutoCompleteWcfService), binding, "");
+                _selfHost.AddServiceEndpoint(typeof(IAutoCompleteWcfService), binding, "");
 
                 var smb = new ServiceMetadataBehavior { HttpGetEnabled = false, HttpsGetEnabled = false };
-                selfHost.Description.Behaviors.Add(smb);
+                _selfHost.Description.Behaviors.Add(smb);
 
                 var mexBinding = MetadataExchangeBindings.CreateMexTcpBinding();
-                selfHost.AddServiceEndpoint(typeof(IMetadataExchange), mexBinding, "mex");
+                _selfHost.AddServiceEndpoint(typeof(IMetadataExchange), mexBinding, "mex");
 
-                selfHost.AddDependencyInjectionBehavior<IAutoCompleteWcfService>(ServiceLocator.GetContainer());
+                _selfHost.AddDependencyInjectionBehavior<IAutoCompleteWcfService>(ServiceLocator.GetContainer());
 
                 var throttleBehavior = new ServiceThrottlingBehavior
                 {
@@ -57,21 +59,29 @@ namespace Vdk.AutoCompleter.Wcf.ServerModule
                     MaxConcurrentInstances = 20,
                     MaxConcurrentSessions = Throughput,
                 };
-                selfHost.Description.Behaviors.Add(throttleBehavior);
+                _selfHost.Description.Behaviors.Add(throttleBehavior);
 
-                selfHost.Open();
-                Console.WriteLine("The service is ready.");
-                Console.WriteLine("Press <ENTER> to terminate service.");
-                Console.WriteLine();
-                Console.ReadLine();
-
-                // Close the ServiceHostBase to shutdown the service.
-                selfHost.Close();
+                _selfHost.Open();
+                Logger.Info("The service is ready.");
+                Logger.Info("Press <ENTER> to terminate service.");
             }
             catch (CommunicationException ce)
             {
-                Console.WriteLine("An exception occurred: {0}", ce.Message);
-                selfHost.Abort();
+                Logger.Error("An exception occurred: {0}", ce.Message);
+                _selfHost.Abort();
+            }
+        }
+
+        public void Stop()
+        {  
+            try
+            {
+                _selfHost.Close();
+            }
+            catch (CommunicationException ce)
+            {
+                Logger.Error("An exception occurred: {0}", ce.Message);
+                _selfHost.Abort();
             }
         }
     }

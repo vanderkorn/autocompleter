@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using Vdk.AutoCompleter.Common;
 using Vdk.AutoCompleter.Common.IOC;
 using Vdk.AutoCompleter.Common.Loggers;
@@ -18,12 +19,22 @@ namespace Vdk.AutoCompleter.Wcf.Server
             if (CommandLine.Parser.Default.ParseArgumentsStrict(args, options))
             {   
                 CoreInitializer.Initialize(Dependencies);
-                using (var scope = ServiceLocator.GetContainer().BeginLifetimeScope())
+                try
                 {
-                    var app = scope.Resolve<IApplicationServer>();
-                    app.Throughput = Throughput;
-                    app.Run(options.InputFile, options.Port);
+                      using (var scope = ServiceLocator.GetContainer().BeginLifetimeScope())
+                      {
+                          var app = scope.Resolve<IApplicationServer>();
+                          app.Throughput = Throughput;
+                          app.Run(options.InputFile, options.Port);
+                          Console.ReadLine();
+                      }
                 }
+                catch (Exception ce)
+                {
+
+                    Console.WriteLine("An exception occurred: {0}", ce.Message);
+                }
+              
             }
         }
 

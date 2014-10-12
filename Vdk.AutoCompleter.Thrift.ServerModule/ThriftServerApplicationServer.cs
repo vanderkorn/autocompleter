@@ -36,7 +36,7 @@ namespace Vdk.AutoCompleter.Thrift.ServerModule
                 TServerTransport transport = new TServerSocket(port);
 
                 //var server = new TSimpleServer(processor, transport);
-                var server = new TThreadPoolServer(processor, transport,
+                 _server = new TThreadPoolServer(processor, transport,
                     new TTransportFactory(),
                     new TTransportFactory(),
                     new TBinaryProtocol.Factory(),
@@ -49,20 +49,35 @@ namespace Vdk.AutoCompleter.Thrift.ServerModule
                     });
 
                 Logger.Info("The service is ready.");
-                server.Serve();
+                _server.Serve();
 
                 //Console.WriteLine("The service is ready.");
                 //Console.WriteLine("Press <ENTER> to terminate service.");
                 //Console.WriteLine();
                 //Console.ReadLine();
 
-                // Close the ServiceHostBase to shutdown the service.
-                server.Stop();
+            
             }
             catch (Exception ce)
             {
                 Logger.Error("An exception occurred: {0}", ce.Message);
             }
+        }
+
+        private TThreadPoolServer _server;
+
+        public void Stop()
+        {
+            try
+            {
+                // Close the ServiceHostBase to shutdown the service.
+                _server.Stop();
+            }
+            catch (Exception ce)
+            {
+                Logger.Error("An exception occurred: {0}", ce.Message);
+            }
+     
         }
     }
 }
