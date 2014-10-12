@@ -6,15 +6,15 @@ using Autofac;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Vdk.AutoCompleter.Common;
 using Vdk.AutoCompleter.Common.IOC;
-using Vdk.AutoCompleter.Thrift.ClientModule;
+using Vdk.AutoCompleter.Wcf.ClientModule;
 
-namespace Vdk.AutoCompleter.Thrift.TestServer
+namespace Vdk.AutoCompleter.Wcf.TestServer
 {
     [TestClass]
-    public class ThriftServerTest
+    public class WcftServerTest
     {
         private const string Host = "localhost";
-        private const int Port = 823;
+        private const int Port = 813;
 
         [TestInitialize]
         public void Initialize()
@@ -24,7 +24,7 @@ namespace Vdk.AutoCompleter.Thrift.TestServer
 
         private void Dependencies(ContainerBuilder builder)
         {
-            builder.RegisterModule(new ThriftClientApplicationModule());
+            builder.RegisterModule(new WcfClientApplicationModule());
         }
 
         [TestMethod]
@@ -62,9 +62,10 @@ namespace Vdk.AutoCompleter.Thrift.TestServer
                 var res = app.Get(prefix);
                 Assert.IsNotNull(res);
                 Assert.IsTrue(res.Any());
-              
+
             });
         }
+
         [TestMethod]
         public void TestMethod3()
         {
@@ -100,24 +101,24 @@ namespace Vdk.AutoCompleter.Thrift.TestServer
                                 Assert.IsNotNull(res);
                                 Assert.IsTrue(res.Any());
                             }
+
                         }
                         catch (Exception ex)
                         {
-                            
+
                             throw;
                         }
 
                     });
                     tasks.Add(task);
-                    
+
                 }
 
             }
-            tasks.ForEach(t=>t.Start());
+            tasks.ForEach(t => t.Start());
             Task.WaitAll(tasks.ToArray());
 
-          
-        }
 
+        }
     }
 }
