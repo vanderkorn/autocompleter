@@ -29,7 +29,7 @@ namespace Vdk.AutoCompleter.Wcf.ServerModule
         public void Run(string inputFile, int port)
         {
             _reader.AddVocabulary(File.OpenText(inputFile));
-            var baseAddress = new Uri(string.Format("net.tcp://localhost:{0}/AutoCompleteWcfService", port));
+            var baseAddress = new Uri(string.Format("net.tcp://0.0.0.0:{0}/AutoCompleteWcfService", port));
              _selfHost = new ServiceHost(typeof(AutoCompleteWcfService), baseAddress);
             try
             {
