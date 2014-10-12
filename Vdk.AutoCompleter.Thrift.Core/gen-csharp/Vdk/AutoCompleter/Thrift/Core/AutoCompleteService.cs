@@ -19,10 +19,10 @@ namespace Vdk.AutoCompleter.Thrift.Core
 {
   public partial class AutoCompleteService {
     public interface Iface {
-      List<string> get(string prefix);
+      List<string> Get(string prefix);
       #if SILVERLIGHT
-      IAsyncResult Begin_get(AsyncCallback callback, object state, string prefix);
-      List<string> End_get(IAsyncResult asyncResult);
+      IAsyncResult Begin_Get(AsyncCallback callback, object state, string prefix);
+      List<string> End_Get(IAsyncResult asyncResult);
       #endif
     }
 
@@ -84,39 +84,39 @@ namespace Vdk.AutoCompleter.Thrift.Core
 
       
       #if SILVERLIGHT
-      public IAsyncResult Begin_get(AsyncCallback callback, object state, string prefix)
+      public IAsyncResult Begin_Get(AsyncCallback callback, object state, string prefix)
       {
-        return send_get(callback, state, prefix);
+        return send_Get(callback, state, prefix);
       }
 
-      public List<string> End_get(IAsyncResult asyncResult)
+      public List<string> End_Get(IAsyncResult asyncResult)
       {
         oprot_.Transport.EndFlush(asyncResult);
-        return recv_get();
+        return recv_Get();
       }
 
       #endif
 
-      public List<string> get(string prefix)
+      public List<string> Get(string prefix)
       {
         #if !SILVERLIGHT
-        send_get(prefix);
-        return recv_get();
+        send_Get(prefix);
+        return recv_Get();
 
         #else
-        var asyncResult = Begin_get(null, null, prefix);
-        return End_get(asyncResult);
+        var asyncResult = Begin_Get(null, null, prefix);
+        return End_Get(asyncResult);
 
         #endif
       }
       #if SILVERLIGHT
-      public IAsyncResult send_get(AsyncCallback callback, object state, string prefix)
+      public IAsyncResult send_Get(AsyncCallback callback, object state, string prefix)
       #else
-      public void send_get(string prefix)
+      public void send_Get(string prefix)
       #endif
       {
-        oprot_.WriteMessageBegin(new TMessage("get", TMessageType.Call, seqid_));
-        get_args args = new get_args();
+        oprot_.WriteMessageBegin(new TMessage("Get", TMessageType.Call, seqid_));
+        Get_args args = new Get_args();
         args.Prefix = prefix;
         args.Write(oprot_);
         oprot_.WriteMessageEnd();
@@ -127,7 +127,7 @@ namespace Vdk.AutoCompleter.Thrift.Core
         #endif
       }
 
-      public List<string> recv_get()
+      public List<string> recv_Get()
       {
         TMessage msg = iprot_.ReadMessageBegin();
         if (msg.Type == TMessageType.Exception) {
@@ -135,13 +135,13 @@ namespace Vdk.AutoCompleter.Thrift.Core
           iprot_.ReadMessageEnd();
           throw x;
         }
-        get_result result = new get_result();
+        Get_result result = new Get_result();
         result.Read(iprot_);
         iprot_.ReadMessageEnd();
         if (result.__isset.success) {
           return result.Success;
         }
-        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "get failed: unknown result");
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "Get failed: unknown result");
       }
 
     }
@@ -149,7 +149,7 @@ namespace Vdk.AutoCompleter.Thrift.Core
       public Processor(Iface iface)
       {
         iface_ = iface;
-        processMap_["get"] = get_Process;
+        processMap_["Get"] = Get_Process;
       }
 
       protected delegate void ProcessFunction(int seqid, TProtocol iprot, TProtocol oprot);
@@ -182,14 +182,14 @@ namespace Vdk.AutoCompleter.Thrift.Core
         return true;
       }
 
-      public void get_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      public void Get_Process(int seqid, TProtocol iprot, TProtocol oprot)
       {
-        get_args args = new get_args();
+        Get_args args = new Get_args();
         args.Read(iprot);
         iprot.ReadMessageEnd();
-        get_result result = new get_result();
-        result.Success = iface_.get(args.Prefix);
-        oprot.WriteMessageBegin(new TMessage("get", TMessageType.Reply, seqid)); 
+        Get_result result = new Get_result();
+        result.Success = iface_.Get(args.Prefix);
+        oprot.WriteMessageBegin(new TMessage("Get", TMessageType.Reply, seqid)); 
         result.Write(oprot);
         oprot.WriteMessageEnd();
         oprot.Transport.Flush();
@@ -201,7 +201,7 @@ namespace Vdk.AutoCompleter.Thrift.Core
     #if !SILVERLIGHT
     [Serializable]
     #endif
-    public partial class get_args : TBase
+    public partial class Get_args : TBase
     {
       private string _prefix;
 
@@ -227,7 +227,7 @@ namespace Vdk.AutoCompleter.Thrift.Core
         public bool prefix;
       }
 
-      public get_args() {
+      public Get_args() {
       }
 
       public void Read (TProtocol iprot)
@@ -259,7 +259,7 @@ namespace Vdk.AutoCompleter.Thrift.Core
       }
 
       public void Write(TProtocol oprot) {
-        TStruct struc = new TStruct("get_args");
+        TStruct struc = new TStruct("Get_args");
         oprot.WriteStructBegin(struc);
         TField field = new TField();
         if (Prefix != null && __isset.prefix) {
@@ -275,7 +275,7 @@ namespace Vdk.AutoCompleter.Thrift.Core
       }
 
       public override string ToString() {
-        StringBuilder sb = new StringBuilder("get_args(");
+        StringBuilder sb = new StringBuilder("Get_args(");
         sb.Append("Prefix: ");
         sb.Append(Prefix);
         sb.Append(")");
@@ -288,7 +288,7 @@ namespace Vdk.AutoCompleter.Thrift.Core
     #if !SILVERLIGHT
     [Serializable]
     #endif
-    public partial class get_result : TBase
+    public partial class Get_result : TBase
     {
       private List<string> _success;
 
@@ -314,7 +314,7 @@ namespace Vdk.AutoCompleter.Thrift.Core
         public bool success;
       }
 
-      public get_result() {
+      public Get_result() {
       }
 
       public void Read (TProtocol iprot)
@@ -356,7 +356,7 @@ namespace Vdk.AutoCompleter.Thrift.Core
       }
 
       public void Write(TProtocol oprot) {
-        TStruct struc = new TStruct("get_result");
+        TStruct struc = new TStruct("Get_result");
         oprot.WriteStructBegin(struc);
         TField field = new TField();
 
@@ -382,7 +382,7 @@ namespace Vdk.AutoCompleter.Thrift.Core
       }
 
       public override string ToString() {
-        StringBuilder sb = new StringBuilder("get_result(");
+        StringBuilder sb = new StringBuilder("Get_result(");
         sb.Append("Success: ");
         sb.Append(Success);
         sb.Append(")");

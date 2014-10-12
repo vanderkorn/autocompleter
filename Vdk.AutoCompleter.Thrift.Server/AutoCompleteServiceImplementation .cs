@@ -15,7 +15,7 @@ namespace Vdk.AutoCompleter.Thrift.Server
             _autoCompleteService = ServiceLocator.Resolve<IAutoCompleteService<string>>();
         }
 
-        public List<string> get(string prefix)
+        public List<string> Get(string prefix)
         {
             var result = _autoCompleteService.GetWordsByPrefix(prefix);
             if (result != null) return result.Select(w => w.Value).ToList();

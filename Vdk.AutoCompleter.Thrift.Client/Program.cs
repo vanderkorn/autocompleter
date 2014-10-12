@@ -35,7 +35,7 @@ namespace Vdk.AutoCompleter.Thrift.Client
                         var arr = line.Split(' ');
                         if (arr.Length < 2 || arr[0] != "get")
                             continue;
-                        var response = client.get(arr[1]);
+                        var response = client.Get(arr[1]);
                         if (response != null)
                         {
                             if (response.Any())
