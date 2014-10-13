@@ -1,17 +1,25 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AssemblyInfo.cs" company="Ivan Kornilov">
+//   Copyright (c) 2014, Ivan Kornilov. All Right Reserved.
+// </copyright>
+// <summary>
+//   AssemblyInfo.cs
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Vdk.AutoCompleter.Wcf.Server")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("WCF-server")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Ivan Kornilov")]
 [assembly: AssemblyProduct("Vdk.AutoCompleter.Wcf.Server")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright ©  2014, Ivan Kornilov. All rights reserved.")]
+[assembly: AssemblyTrademark("Ivan Kornilov")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

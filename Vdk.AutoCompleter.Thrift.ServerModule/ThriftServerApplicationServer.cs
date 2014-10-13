@@ -1,62 +1,94 @@
-﻿using System;
-using System.IO;
-using NLog;
-using Thrift;
-using Thrift.Protocol;
-using Thrift.Server;
-using Thrift.Transport;
-using Vdk.AutoCompleter.Common;
-using Vdk.AutoCompleter.Core.Readers;
-using Vdk.AutoCompleter.Thrift.Core;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ThriftServerApplicationServer.cs" company="Ivan Kornilov">
+//   Copyright ©  2014, Ivan Kornilov. All rights reserved.
+// </copyright>
+// <summary>
+//   Defines the ThriftServerApplicationServer type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Vdk.AutoCompleter.Thrift.ServerModule
 {
+    using System;
+    using System.IO;
+    using NLog;
+    using global::Thrift;
+    using global::Thrift.Protocol;
+    using global::Thrift.Server;
+    using global::Thrift.Transport;
+    using Vdk.AutoCompleter.Common;
+    using Vdk.AutoCompleter.Core.Readers;
+    using Vdk.AutoCompleter.Thrift.Core;
+
+    /// <summary>
+    /// The THRIFT server module.
+    /// </summary>
     public class ThriftServerApplicationServer : IApplicationServer
     {
-        private readonly IVocabularyReader<string> _reader;
+        /// <summary>
+        /// The reader dictionary.
+        /// </summary>
+        private readonly IVocabularyReader<string> reader;
 
+        /// <summary>
+        /// The THRIFT server.
+        /// </summary>
+        private TThreadPoolServer server;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ThriftServerApplicationServer"/> class.
+        /// </summary>
+        /// <param name="reader">
+        /// The reader dictionary.
+        /// </param>
         public ThriftServerApplicationServer(IVocabularyReader<string> reader)
         {
-            _reader = reader;
-            Throughput = 10;
+            this.reader = reader;
+            this.Throughput = 10;
         }
 
+        /// <summary>
+        /// Gets or sets the logger.
+        /// </summary>
         public Logger Logger { get; set; }
+
+        /// <summary>
+        /// Gets or sets the throughput.
+        /// </summary>
         public int Throughput { get; set; }
 
+        /// <summary>
+        /// The start server.
+        /// </summary>
+        /// <param name="inputFile">
+        /// The input file (dictionary).
+        /// </param>
+        /// <param name="port">
+        /// The server port.
+        /// </param>
         public void Run(string inputFile, int port)
         {
-            _reader.AddVocabulary(File.OpenText(inputFile));
+            this.reader.AddVocabulary(File.OpenText(inputFile));
 
             try
             {
-
                 var service = new AutoCompleteServiceImplementation();
                 TProcessor processor = new AutoCompleteService.Processor(service);
                 TServerTransport transport = new TServerSocket(port);
 
-                //var server = new TSimpleServer(processor, transport);
-                 _server = new TThreadPoolServer(processor, transport,
+                this.server = new TThreadPoolServer(
+                    processor,
+                    transport,
                     new TTransportFactory(),
                     new TTransportFactory(),
                     new TBinaryProtocol.Factory(),
                     new TBinaryProtocol.Factory(),
                     1,
-                    Throughput,
-                    (t) =>
-                    {
-
-                    });
+                    this.Throughput,
+                    (t) => { });
 
                 Logger.Info("The service is ready.");
-                _server.Serve();
-
-                //Console.WriteLine("The service is ready.");
-                //Console.WriteLine("Press <ENTER> to terminate service.");
-                //Console.WriteLine();
-                //Console.ReadLine();
-
-            
+                this.server.Serve();
             }
             catch (Exception ce)
             {
@@ -64,20 +96,19 @@ namespace Vdk.AutoCompleter.Thrift.ServerModule
             }
         }
 
-        private TThreadPoolServer _server;
-
+        /// <summary>
+        /// The stop server.
+        /// </summary>
         public void Stop()
         {
             try
             {
-                // Close the ServiceHostBase to shutdown the service.
-                _server.Stop();
+                this.server.Stop();
             }
             catch (Exception ce)
             {
                 Logger.Error("An exception occurred: {0}", ce.Message);
             }
-     
         }
     }
 }

@@ -47,7 +47,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoCompleteServiceImplementation .cs" />
+    <Compile Include="AutoCompleteServiceImplementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThriftServerApplicationModule.cs" />
     <Compile Include="ThriftServerApplicationServer.cs" />
