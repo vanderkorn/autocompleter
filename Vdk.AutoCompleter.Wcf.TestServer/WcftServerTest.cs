@@ -10,6 +10,8 @@ using Vdk.AutoCompleter.Wcf.ClientModule;
 
 namespace Vdk.AutoCompleter.Wcf.TestServer
 {
+    using System.Diagnostics;
+
     [TestClass]
     public class WcftServerTest
     {
@@ -32,11 +34,23 @@ namespace Vdk.AutoCompleter.Wcf.TestServer
         {
             var app = ServiceLocator.Resolve<IApplicationClient<string>>();
             app.Connect(Host, Port);
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             var res = app.Get("ab");
             Assert.IsNotNull(res);
             Assert.IsTrue(res.Any());
+            stopwatch.Stop();
+            Console.WriteLine("Time read elapsed: {0}", stopwatch.Elapsed);
             foreach (var r in res)
                 Console.WriteLine(r);
+
+           //stopwatch.Reset();
+           // stopwatch.Start();
+           //  res = app.Get("ab");
+           // Assert.IsNotNull(res);
+           // Assert.IsTrue(res.Any());
+           // stopwatch.Stop();
+           // Console.WriteLine("Time read elapsed: {0}", stopwatch.Elapsed);
         }
 
         [TestMethod]

@@ -73,14 +73,15 @@ namespace Vdk.AutoCompleter.Wcf.ServerModule
         {
             this.reader.AddVocabulary(File.OpenText(inputFile));
             var baseAddress = new Uri(string.Format("net.tcp://0.0.0.0:{0}/AutoCompleteWcfService", port));
-             this.selfHost = new ServiceHost(typeof(AutoCompleteWcfService), baseAddress);
+        
+            this.selfHost = new ServiceHost(typeof(AutoCompleteWcfService), baseAddress);
             try
             {
                 var bindingElements = new List<BindingElement>();
-                var httpBindingElement = new TcpTransportBindingElement();
+                var tcpTransportBindingElement = new TcpTransportBindingElement();
                 var textBindingElement = new CustomTextMessageBindingElement("us-ascii");
                 bindingElements.Add(textBindingElement);
-                bindingElements.Add(httpBindingElement);
+                bindingElements.Add(tcpTransportBindingElement);
                 var binding = new CustomBinding(bindingElements);
 
                 this.selfHost.AddServiceEndpoint(typeof(IAutoCompleteWcfService), binding, string.Empty);

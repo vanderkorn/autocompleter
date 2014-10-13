@@ -60,8 +60,11 @@ namespace Vdk.AutoCompleter.Wcf.ClientModule
             bindingElements.Add(textBindingElement);
             bindingElements.Add(httpBindingElement);
             var binding = new CustomBinding(bindingElements);
+       
             var adress = new EndpointAddress(baseAddress);
+    
             this.client = new AutoCompleteWcfServiceClient(binding, adress);
+            this.client.Open();
         }
 
         /// <summary>
