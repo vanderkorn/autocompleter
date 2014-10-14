@@ -16,3 +16,10 @@ obj
 /Vdk.AutoCompleter.Wcf.Client/*.user
 /Vdk.AutoCompleter.Thrift.Server/*.Cache
 /Vdk.AutoCompleter.Thrift.Core/StyleCop.Cache
+*.Cache
+/Vdk.AutoCompleter.Wcf.ServerModule/*.Cache
+/Vdk.AutoCompleter.Wcf.Core/*.Cache
+/Vdk.AutoCompleter.Wcf.Client/*.Cache
+/Vdk.AutoCompleter.Thrift.ServerModule/*.Cache
+/Vdk.AutoCompleter.Thrift.ClientModule/*.StyleCop
+/Vdk.AutoCompleter.Thrift.Client/*.Cache
