@@ -79,11 +79,12 @@ namespace Vdk.AutoCompleter.Wcf.ServerModule
             {
                 var bindingElements = new List<BindingElement>();
                 var tcpTransportBindingElement = new TcpTransportBindingElement();
+   
                 var textBindingElement = new CustomTextMessageBindingElement("us-ascii");
                 bindingElements.Add(textBindingElement);
                 bindingElements.Add(tcpTransportBindingElement);
                 var binding = new CustomBinding(bindingElements);
-
+                binding.ReceiveTimeout = new TimeSpan(0, 0, 120, 0);
                 this.selfHost.AddServiceEndpoint(typeof(IAutoCompleteWcfService), binding, string.Empty);
 
                 var smb = new ServiceMetadataBehavior { HttpGetEnabled = false, HttpsGetEnabled = false };
