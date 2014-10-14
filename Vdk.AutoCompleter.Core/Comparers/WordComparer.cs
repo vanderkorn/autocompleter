@@ -1,59 +1,49 @@
-using System;
-using System.Collections.Generic;
-using Vdk.AutoCompleter.Core.Models;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="WordComparer.cs" company="Ivan Kornilov">
+//   Copyright ©  2014, Ivan Kornilov. All rights reserved.
+// </copyright>
+// <summary>
+//   The word comparer.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Vdk.AutoCompleter.Core.Comparers
 {
-    //public class WordComparer<T> : IComparer<Word<T>> where T : IComparable<T>
-    //{
-    //    public int Compare(Word<T> x, Word<T> y)
-    //    {
+    using System.Collections.Generic;
+    using Vdk.AutoCompleter.Core.Models;
 
-    //        var resultCompare = x.Frequency.CompareTo(y.Frequency);
-
-    //        if (resultCompare < 0)
-    //            return 1;
-
-    //        if (resultCompare > 0)
-    //            return -1;
-    //        return x.Value.CompareTo(y.Value);
-    //    }
-    //}
+    /// <summary>
+    /// The word comparer ASCII string.
+    /// </summary>
     public class WordComparer : IComparer<Word<AsciiString>>
     {
-        public int Compare(Word<AsciiString> x, Word<Models.AsciiString> y)
+        /// <summary>
+        /// The compare ASCII string.
+        /// </summary>
+        /// <param name="x">
+        /// The ASCII string x.
+        /// </param>
+        /// <param name="y">
+        /// The ASCII string y.
+        /// </param>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
+        public int Compare(Word<AsciiString> x, Word<AsciiString> y)
         {
             var resultCompare = x.Frequency.CompareTo(y.Frequency);
 
             if (resultCompare < 0)
+            {
                 return 1;
+            }
 
             if (resultCompare > 0)
+            {
                 return -1;
+            }
+
             return x.Value.CompareTo(y.Value);
         }
     }
-
-    public interface IComparerFactory<T> where T : IComparable<T>
-    {
-        IComparer<Word<T>> GetComparer();
-    }
-
-    public class ComparerFactory: IComparerFactory<string>
-    {
-        private readonly StringWordComparer _instance = new StringWordComparer();
-        public IComparer<Word<string>> GetComparer() 
-        {
-            return _instance;
-        }
-    }
-    public class AsciiComparerFactory : IComparerFactory<AsciiString>
-    {
-        private readonly WordComparer _instance = new WordComparer();
-        public IComparer<Word<AsciiString>> GetComparer()
-        {
-            return _instance;
-        }
-    }
-
 }

@@ -5,10 +5,22 @@ using Vdk.AutoCompleter.Core.Comparers;
 
 namespace Vdk.AutoCompleter.Core.Extensions
 {
+    /// <summary>
+    /// The byte array extensions.
+    /// </summary>
     public static class ByteArrayExtensions
     {
-        private static readonly string[] hexValues = BitConverter.ToString(Enumerable.Range(0, 256).Select(x => (byte)x).ToArray()).Split('-');
+        private static readonly string[] HexValues = BitConverter.ToString(Enumerable.Range(0, 256).Select(x => (byte)x).ToArray()).Split('-');
 
+        /// <summary>
+        /// The get hash code ex.
+        /// </summary>
+        /// <param name="buffer">
+        /// The buffer.
+        /// </param>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
         public static int GetHashCodeEx(this byte[] buffer)
         {
             const int CONSTANT = 17;
@@ -40,11 +52,17 @@ namespace Vdk.AutoCompleter.Core.Extensions
         }
 
         /// <summary>
-        /// http://en.wikipedia.org/wiki/MurmurHash
+        /// The mur mur hash 3. http://en.wikipedia.org/wiki/MurmurHash
         /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="seed"></param>
-        /// <returns></returns>
+        /// <param name="buffer">
+        /// The buffer.
+        /// </param>
+        /// <param name="seed">
+        /// The seed.
+        /// </param>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
         public static int MurMurHash3(this byte[] buffer, int seed = 37)
         {
             const uint c1 = 0xcc9e2d51;
@@ -105,6 +123,21 @@ namespace Vdk.AutoCompleter.Core.Extensions
             return (int)hash;
         }
 
+        /// <summary>
+        /// The middle.
+        /// </summary>
+        /// <param name="buffer">
+        /// The buffer.
+        /// </param>
+        /// <param name="offset">
+        /// The offset.
+        /// </param>
+        /// <param name="length">
+        /// The length.
+        /// </param>
+        /// <returns>
+        /// The <see cref="byte[]"/>.
+        /// </returns>
         public static byte[] Middle(this byte[] buffer, int offset, int length)
         {
             byte[] middle = new byte[length];
@@ -112,11 +145,35 @@ namespace Vdk.AutoCompleter.Core.Extensions
             return middle;
         }
 
+        /// <summary>
+        /// The left.
+        /// </summary>
+        /// <param name="buffer">
+        /// The buffer.
+        /// </param>
+        /// <param name="length">
+        /// The length.
+        /// </param>
+        /// <returns>
+        /// The <see cref="byte[]"/>.
+        /// </returns>
         public static byte[] Left(this byte[] buffer, int length)
         {
             return buffer.Middle(0, length);
         }
 
+        /// <summary>
+        /// The right.
+        /// </summary>
+        /// <param name="buffer">
+        /// The buffer.
+        /// </param>
+        /// <param name="length">
+        /// The length.
+        /// </param>
+        /// <returns>
+        /// The <see cref="byte[]"/>.
+        /// </returns>
         public static byte[] Right(this byte[] buffer, int length)
         {
             return buffer.Middle(buffer.Length - length, length);
@@ -132,16 +189,40 @@ namespace Vdk.AutoCompleter.Core.Extensions
             StringBuilder sb = new StringBuilder(2 * buffer.Length);
 
             for (int i = 0; i < buffer.Length; i++)
-                sb.Append(hexValues[buffer[i]]);
+                sb.Append(HexValues[buffer[i]]);
 
             return sb.ToString();
         }
 
+        /// <summary>
+        /// The get bit.
+        /// </summary>
+        /// <param name="map">
+        /// The map.
+        /// </param>
+        /// <param name="bitIndex">
+        /// The bit index.
+        /// </param>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
         public static int GetBit(this byte[] map, int bitIndex)
         {
             return (map[bitIndex >> 3] >> (bitIndex & 7)) & 1;
         }
 
+        /// <summary>
+        /// The set bit.
+        /// </summary>
+        /// <param name="map">
+        /// The map.
+        /// </param>
+        /// <param name="bitIndex">
+        /// The bit index.
+        /// </param>
+        /// <param name="value">
+        /// The value.
+        /// </param>
         public static void SetBit(this byte[] map, int bitIndex, int value)
         {
             int bitMask = 1 << (bitIndex & 7);
@@ -152,4 +233,3 @@ namespace Vdk.AutoCompleter.Core.Extensions
         }
     }
 }
- 

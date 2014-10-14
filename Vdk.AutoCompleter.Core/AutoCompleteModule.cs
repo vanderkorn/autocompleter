@@ -1,20 +1,36 @@
-﻿using Autofac;
-using Vdk.AutoCompleter.Core.Comparers;
-using Vdk.AutoCompleter.Core.Converters;
-using Vdk.AutoCompleter.Core.Models;
-using Vdk.AutoCompleter.Core.NGramGenerators;
-using Vdk.AutoCompleter.Core.Readers;
-using Vdk.AutoCompleter.Core.Services;
-using Vdk.AutoCompleter.Core.Writers;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AutoCompleteModule.cs" company="Ivan Kornilov">
+//   Copyright ©  2014, Ivan Kornilov. All rights reserved.
+// </copyright>
+// <summary>
+//   Defines the AutoCompleteModule type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Vdk.AutoCompleter.Core
 {
+    using Autofac;
+    using Vdk.AutoCompleter.Core.Comparers;
+    using Vdk.AutoCompleter.Core.Converters;
+    using Vdk.AutoCompleter.Core.Models;
+    using Vdk.AutoCompleter.Core.NGramGenerators;
+    using Vdk.AutoCompleter.Core.Readers;
+    using Vdk.AutoCompleter.Core.Services;
+    using Vdk.AutoCompleter.Core.Writers;
+
+    /// <summary>
+    /// The autocomplete AUTOFAC module.
+    /// </summary>
     public class AutoCompleteModule : Module
     {
+        /// <summary>
+        /// The load module.
+        /// </summary>
+        /// <param name="builder">
+        /// The container builder.
+        /// </param>
         protected override void Load(ContainerBuilder builder)
         {
-           // builder.RegisterSource(new ResolveDependenciesSource());
-
             builder.RegisterType<AsciiComparerFactory>()
                       .As<IComparerFactory<AsciiString>>()
                       .InstancePerDependency();
@@ -31,8 +47,6 @@ namespace Vdk.AutoCompleter.Core
                             .As<IWordValueConverter<string>>()
                             .InstancePerDependency();
 
-
-
             builder.RegisterType<NGramParser>()
                    .WithParameter("minLength", 1)
                    .WithParameter("maxLength", 15)
@@ -45,22 +59,6 @@ namespace Vdk.AutoCompleter.Core
                    .As<INGramParser<AsciiString>>()
                    .InstancePerDependency();
 
-
-
-            //builder.RegisterGeneric(typeof(AutoCompleteService<>))
-            //    .As(typeof(IAutoCompleteService<>))
-            //    .SingleInstance();
-
-            //builder.RegisterGeneric(typeof(VocabularyWriter<>))
-            //   .As(typeof(IVocabularyWriter<>))
-            //   .InstancePerDependency();
-
-            //builder.RegisterGeneric(typeof(VocabularyReader<>))
-            //   .As(typeof(IVocabularyReader<>))
-            //   .InstancePerDependency();
-
-
-
             builder.RegisterGeneric(typeof(ConcurentAutoCompleteService<>))
                 .As(typeof(IAutoCompleteService<>))
                 .SingleInstance();
@@ -72,21 +70,6 @@ namespace Vdk.AutoCompleter.Core
             builder.RegisterGeneric(typeof(ConcurentVocabularyReader<>))
                .As(typeof(IVocabularyReader<>))
                .InstancePerDependency();
-
-
-
-            //builder.RegisterType<AutoCompleteService<string>>().As<IAutoCompleteService<string>>().SingleInstance();
-            //builder.RegisterType<VocabularyWriter<string>>().As<IVocabularyWriter<string>>().InstancePerDependency();
-            //builder.RegisterType<VocabularyReader<string>>().As<IVocabularyReader<string>>().InstancePerDependency();
-            //builder.RegisterType<NGramParser>()
-            //       .WithParameter("minLength", 1)
-            //       .WithParameter("maxLength", 15)
-            //       .As<INGramParser>()
-            //       .InstancePerDependency();
-
-            //builder.RegisterType<AutoCompleteService>().As<IAutoCompleteService>().SingleInstance();
-            //builder.RegisterType<VocabularyWriter>().As<IVocabularyWriter>().InstancePerDependency();
-            //builder.RegisterType<VocabularyReader>().As<IVocabularyReader>().InstancePerDependency();
         }
     }
 }

@@ -67,12 +67,16 @@
     <Compile Include="AutoCompleteModule.cs" />
     <Compile Include="Collections\ConcurrentList.cs" />
     <Compile Include="Collections\ConcurrentSortedSet.cs" />
+    <Compile Include="Collections\ThreadSafeList.cs" />
+    <Compile Include="Comparers\AsciiComparerFactory.cs" />
     <Compile Include="Comparers\BigEndianByteArrayComparer.cs" />
     <Compile Include="Comparers\BigEndianByteArrayEqualityComparer.cs" />
+    <Compile Include="Comparers\CommonArray.cs" />
+    <Compile Include="Comparers\ComparerFactory.cs" />
+    <Compile Include="Comparers\IComparerFactory.cs" />
     <Compile Include="Comparers\StringWordComparer.cs" />
     <Compile Include="Comparers\WordComparer.cs" />
     <Compile Include="Converters\AsciiWordValueConverter.cs" />
-    <Compile Include="Converters\IWordConverter.cs" />
     <Compile Include="Converters\IWordValueConverter.cs" />
     <Compile Include="Converters\WordValueConverter.cs" />
     <Compile Include="Extensions\ByteArrayExtensions.cs" />
@@ -91,7 +95,6 @@
     <Compile Include="Services\ConcurentAutoCompleteService.cs" />
     <Compile Include="Services\IAutoCompleteService.cs" />
     <Compile Include="Writers\IVocabularyWriter.cs" />
-    <Compile Include="Writers\ConcurentVocabularyWriter.cs" />
     <Compile Include="Writers\VocabularyWriter.cs" />
   </ItemGroup>
   <ItemGroup>

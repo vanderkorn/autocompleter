@@ -1,15 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using Vdk.AutoCompleter.Core.Comparers;
-using Vdk.AutoCompleter.Core.Services;
-
 namespace Vdk.AutoCompleter.Core.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using Vdk.AutoCompleter.Core.Comparers;
 
+    /// <summary>
+    /// The ascii string.
+    /// </summary>
     public sealed class AsciiString : IEnumerable<AsciiChar>, IComparable<AsciiString>, IEquatable<AsciiString>
     {
         public static readonly AsciiString Empty;

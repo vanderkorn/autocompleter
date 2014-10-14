@@ -54,8 +54,6 @@
     <Compile Include="IOC\CoreInitializer.cs" />
     <Compile Include="IOC\IDependency.cs" />
     <Compile Include="IOC\ISingletonDependency.cs" />
-    <Compile Include="IOC\ITransientDependency.cs" />
-    <Compile Include="IOC\IUnitOfWorkDependency.cs" />
     <Compile Include="IOC\ResolveDependenciesSource.cs" />
     <Compile Include="IOC\ServiceLocator.cs" />
     <Compile Include="Loggers\LogModule.cs" />

@@ -1,182 +1,38 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ConcurrentList.cs" company="Ivan Kornilov">
+//   Copyright ©  2014, Ivan Kornilov. All rights reserved.
+// </copyright>
+// <summary>
+//   Defines the ConcurrentList.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Vdk.AutoCompleter.Core.Collections
 {
-    public abstract class ThreadSafeList<T> : IList<T>, IList
-    {
-        public abstract T this[int index] { get; }
+    using System;
+    using System.Threading;
 
-        public abstract int Count { get; }
-
-        public abstract void Add(T item);
-
-        public virtual int IndexOf(T item)
-        {
-            IEqualityComparer<T> comparer = EqualityComparer<T>.Default;
-
-            int count = Count;
-            for (int i = 0; i < count; i++)
-            {
-                if (comparer.Equals(item, this[i]))
-                {
-                    return i;
-                }
-            }
-
-            return -1;
-        }
-
-        public virtual bool Contains(T item)
-        {
-            return IndexOf(item) != -1;
-        }
-
-        public abstract void CopyTo(T[] array, int arrayIndex);
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            int count = Count;
-            for (int i = 0; i < count; i++)
-            {
-                yield return this[i];
-            }
-        }
-
-        #region "Protected methods"
-
-        protected abstract bool IsSynchronizedBase { get; }
-
-        protected virtual void CopyToBase(Array array, int arrayIndex)
-        {
-            for (int i = 0; i < this.Count; ++i)
-            {
-                array.SetValue(this[i], arrayIndex + i);
-            }
-        }
-
-        protected virtual int AddBase(object value)
-        {
-            Add((T)value);
-            return Count - 1;
-        }
-
-        #endregion
-
-        #region "Explicit interface implementations"
-
-        T IList<T>.this[int index]
-        {
-            get { return this[index]; }
-            set { throw new NotSupportedException(); }
-        }
-
-        void IList<T>.Insert(int index, T item)
-        {
-            throw new NotSupportedException();
-        }
-
-        void IList<T>.RemoveAt(int index)
-        {
-            throw new NotSupportedException();
-        }
-
-        bool ICollection<T>.IsReadOnly
-        {
-            get { return false; }
-        }
-
-        void ICollection<T>.Clear()
-        {
-            throw new NotSupportedException();
-        }
-
-        bool ICollection<T>.Remove(T item)
-        {
-            throw new NotSupportedException();
-        }
-
-        bool IList.IsFixedSize
-        {
-            get { return false; }
-        }
-
-        bool IList.IsReadOnly
-        {
-            get { return false; }
-        }
-
-        object IList.this[int index]
-        {
-            get { return this[index]; }
-            set { throw new NotSupportedException(); }
-        }
-
-        void IList.RemoveAt(int index)
-        {
-            throw new NotSupportedException();
-        }
-
-        void IList.Remove(object value)
-        {
-            throw new NotSupportedException();
-        }
-
-        void IList.Insert(int index, object value)
-        {
-            throw new NotSupportedException();
-        }
-
-        int IList.IndexOf(object value)
-        {
-            return IndexOf((T)value);
-        }
-
-        void IList.Clear()
-        {
-            throw new NotSupportedException();
-        }
-
-        bool IList.Contains(object value)
-        {
-            return ((IList)this).IndexOf(value) != -1;
-        }
-
-        int IList.Add(object value)
-        {
-            return AddBase(value);
-        }
-
-        bool ICollection.IsSynchronized
-        {
-            get { return IsSynchronizedBase; }
-        }
-
-        object ICollection.SyncRoot
-        {
-            get { return null; }
-        }
-
-        void ICollection.CopyTo(Array array, int arrayIndex)
-        {
-            CopyToBase(array, arrayIndex);
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        #endregion
-    }
-
+    /// <summary>
+    /// The concurrent list.
+    /// </summary>
+    /// <typeparam name="T">
+    /// Type of element
+    /// </typeparam>
     public sealed class ConcurrentList<T> : ThreadSafeList<T>
     {
+        /// <summary>
+        /// The sizes.
+        /// </summary>
         static readonly int[] Sizes;
+
+        /// <summary>
+        /// The counts.
+        /// </summary>
         static readonly int[] Counts;
 
+        /// <summary>
+        /// Initializes static members of the <see cref="ConcurrentList"/> class.
+        /// </summary>
         static ConcurrentList()
         {
             Sizes = new int[32];
@@ -197,21 +53,50 @@ namespace Vdk.AutoCompleter.Core.Collections
             }
         }
 
-        int _index;
-        int _fuzzyCount;
-        int _count;
-        T[][] _array;
+        /// <summary>
+        /// The index.
+        /// </summary>
+        int index;
 
+        /// <summary>
+        /// The fuzzy count.
+        /// </summary>
+        int fuzzyCount;
+
+        /// <summary>
+        /// The count.
+        /// </summary>
+        int count;
+
+        /// <summary>
+        /// The array.
+        /// </summary>
+        readonly T[][] array;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConcurrentList{T}"/> class.
+        /// </summary>
         public ConcurrentList()
         {
-            _array = new T[32][];
+            this.array = new T[32][];
         }
 
+        /// <summary>
+        /// The this.
+        /// </summary>
+        /// <param name="index">
+        /// The index.
+        /// </param>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// </exception>
+        /// <returns>
+        /// The <see cref="T"/>.
+        /// </returns>
         public override T this[int index]
         {
             get
             {
-                if (index < 0 || index >= _count)
+                if (index < 0 || index >= this.count)
                 {
                     throw new ArgumentOutOfRangeException("index");
                 }
@@ -222,21 +107,30 @@ namespace Vdk.AutoCompleter.Core.Collections
                     index -= ((int)Math.Pow(2, arrayIndex) - 1);
                 }
 
-                return _array[arrayIndex][index];
+                return this.array[arrayIndex][index];
             }
         }
 
+        /// <summary>
+        /// Gets the count.
+        /// </summary>
         public override int Count
         {
             get
             {
-                return _count;
+                return this.count;
             }
         }
 
+        /// <summary>
+        /// The add.
+        /// </summary>
+        /// <param name="element">
+        /// The element.
+        /// </param>
         public override void Add(T element)
         {
-            int index = Interlocked.Increment(ref _index) - 1;
+            int index = Interlocked.Increment(ref this.index) - 1;
             int adjustedIndex = index;
 
             int arrayIndex = GetArrayIndex(index + 1);
@@ -245,22 +139,35 @@ namespace Vdk.AutoCompleter.Core.Collections
                 adjustedIndex -= Counts[arrayIndex - 1];
             }
 
-            if (_array[arrayIndex] == null)
+            if (this.array[arrayIndex] == null)
             {
                 int arrayLength = Sizes[arrayIndex];
-                Interlocked.CompareExchange(ref _array[arrayIndex], new T[arrayLength], null);
+                Interlocked.CompareExchange(ref this.array[arrayIndex], new T[arrayLength], null);
             }
 
-            _array[arrayIndex][adjustedIndex] = element;
+            this.array[arrayIndex][adjustedIndex] = element;
 
-            int count = _count;
-            int fuzzyCount = Interlocked.Increment(ref _fuzzyCount);
+            int count = this.count;
+            int fuzzyCount = Interlocked.Increment(ref this.fuzzyCount);
             if (fuzzyCount == index + 1)
             {
-                Interlocked.CompareExchange(ref _count, fuzzyCount, count);
+                Interlocked.CompareExchange(ref this.count, fuzzyCount, count);
             }
         }
 
+        /// <summary>
+        /// The copy to.
+        /// </summary>
+        /// <param name="array">
+        /// The array.
+        /// </param>
+        /// <param name="index">
+        /// The index.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// </exception>
         public override void CopyTo(T[] array, int index)
         {
             if (array == null)
@@ -268,7 +175,7 @@ namespace Vdk.AutoCompleter.Core.Collections
                 throw new ArgumentNullException("array");
             }
 
-            int count = _count;
+            int count = this.count;
             if (array.Length - index < count)
             {
                 throw new ArgumentException("There is not enough available space in the destination array.");
@@ -278,7 +185,7 @@ namespace Vdk.AutoCompleter.Core.Collections
             int elementsRemaining = count;
             while (elementsRemaining > 0)
             {
-                T[] source = _array[arrayIndex++];
+                T[] source = this.array[arrayIndex++];
                 int elementsToCopy = Math.Min(source.Length, elementsRemaining);
                 int startIndex = count - elementsRemaining;
 
@@ -288,6 +195,15 @@ namespace Vdk.AutoCompleter.Core.Collections
             }
         }
 
+        /// <summary>
+        /// The get array index.
+        /// </summary>
+        /// <param name="count">
+        /// The count.
+        /// </param>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
         private static int GetArrayIndex(int count)
         {
             int arrayIndex = 0;
@@ -325,8 +241,11 @@ namespace Vdk.AutoCompleter.Core.Collections
             return arrayIndex;
         }
 
-        #region "Protected methods"
+        #region Protected methods
 
+        /// <summary>
+        /// Gets a value indicating whether is synchronized base.
+        /// </summary>
         protected override bool IsSynchronizedBase
         {
             get { return false; }

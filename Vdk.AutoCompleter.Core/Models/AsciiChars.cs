@@ -1,5 +1,17 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AsciiChars.cs" company="Ivan Kornilov">
+//   Copyright ©  2014, Ivan Kornilov. All rights reserved.
+// </copyright>
+// <summary>
+//   The ASCII chars.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 namespace Vdk.AutoCompleter.Core.Models
 {
+    /// <summary>
+    /// The ASCII chars.
+    /// </summary>
     public static class AsciiChars
     {
         public static AsciiChar Null { get { return new AsciiChar((byte)0); } }

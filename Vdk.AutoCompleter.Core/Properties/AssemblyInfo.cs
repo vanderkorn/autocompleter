@@ -1,17 +1,25 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AssemblyInfo.cs" company="Ivan Kornilov">
+//   Copyright ©  2014, Ivan Kornilov. All rights reserved.
+// </copyright>
+// <summary>
+//   AssemblyInfo.cs
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Vdk.AutoCompleter.Core")]
-[assembly: AssemblyDescription("Ядро решения задачи нахождения автодополнений слов")]
+[assembly: AssemblyDescription("he core of the problem of finding solutions autocomplete words")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ivan Kornilov")]
 [assembly: AssemblyProduct("Vdk.AutoCompleter.Core")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
-[assembly: AssemblyTrademark("Van Der Korn")]
+[assembly: AssemblyCopyright("Copyright ©  2014, Ivan Kornilov. All rights reserved.")]
+[assembly: AssemblyTrademark("Ivan Kornilov")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

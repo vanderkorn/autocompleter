@@ -1,15 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BigEndianByteArrayComparer.cs" company="Ivan Kornilov">
+//   Copyright ©  2014, Ivan Kornilov. All rights reserved.
+// </copyright>
+// <summary>
+//   Defines the BigEndianByteArrayComparer type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
 
 namespace Vdk.AutoCompleter.Core.Comparers
 {
+    using System;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// The big endian byte array comparer.
+    /// </summary>
     public class BigEndianByteArrayComparer : IComparer<byte[]>
     {
+        /// <summary>
+        /// The instance.
+        /// </summary>
         public static readonly BigEndianByteArrayComparer Instance = new BigEndianByteArrayComparer();
-        
+
+        /// <summary>
+        /// The compare.
+        /// </summary>
+        /// <param name="x">
+        /// The x.
+        /// </param>
+        /// <param name="y">
+        /// The y.
+        /// </param>
+        /// <param name="length">
+        /// The length.
+        /// </param>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
         public int Compare(byte[] x, byte[] y, int length)
         {
-            CommonArray common = new CommonArray();
+            var common = new CommonArray();
             common.ByteArray = x;
             ulong[] array1 = common.UInt64Array;
             common.ByteArray = y;
@@ -122,6 +154,18 @@ namespace Vdk.AutoCompleter.Core.Comparers
             return 0;
         }
 
+        /// <summary>
+        /// The compare.
+        /// </summary>
+        /// <param name="x">
+        /// The x.
+        /// </param>
+        /// <param name="y">
+        /// The y.
+        /// </param>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
         public int Compare(byte[] x, byte[] y)
         {
             int cmp = Compare(x, y, Math.Min(x.Length, y.Length));

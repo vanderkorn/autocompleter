@@ -1,67 +1,127 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using Vdk.AutoCompleter.Core.Collections;
-using Vdk.AutoCompleter.Core.Comparers;
-using Vdk.AutoCompleter.Core.Models;
-using Vdk.AutoCompleter.Core.NGramGenerators;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AutoCompleteService.cs" company="Ivan Kornilov">
+//   Copyright ©  2014, Ivan Kornilov. All rights reserved.
+// </copyright>
+// <summary>
+//   Defines the AutoCompleteService type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Vdk.AutoCompleter.Core.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Vdk.AutoCompleter.Core.Comparers;
+    using Vdk.AutoCompleter.Core.Models;
+    using Vdk.AutoCompleter.Core.NGramGenerators;
+
+    /// <summary>
+    /// The autocomplete service.
+    /// </summary>
+    /// <typeparam name="T">
+    /// Type of element
+    /// </typeparam>
     public class AutoCompleteService<T> : IAutoCompleteService<T> where T : IComparable<T>
     {
-        private readonly INGramParser<T> _nGramParser;
-        private readonly IComparerFactory<T> _comparerFactory;
+        /// <summary>
+        /// The NGRAM parser.
+        /// </summary>
+        private readonly INGramParser<T> nGramParser;
 
+        /// <summary>
+        /// The comparer factory.
+        /// </summary>
+        private readonly IComparerFactory<T> comparerFactory;
 
+        /// <summary>
+        /// The vocabulary.
+        /// </summary>
+        private Dictionary<T, SortedSet<Word<T>>> vocabulary;
 
-        private Dictionary<T, SortedSet<Word<T>>> _vocabulary;
-
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AutoCompleteService{T}"/> class.
+        /// </summary>
+        /// <param name="nGramParser">
+        /// The n gram parser.
+        /// </param>
+        /// <param name="comparerFactory">
+        /// The comparer factory.
+        /// </param>
         public AutoCompleteService(INGramParser<T> nGramParser, IComparerFactory<T> comparerFactory)
         {
-            _nGramParser = nGramParser;
-            _comparerFactory = comparerFactory;
-            _vocabulary = new Dictionary<T, SortedSet<Word<T>>>();
+            this.nGramParser = nGramParser;
+            this.comparerFactory = comparerFactory;
+            this.vocabulary = new Dictionary<T, SortedSet<Word<T>>>();
         }
 
-    
-
+        /// <summary>
+        /// The add word to vocabulary.
+        /// </summary>
+        /// <param name="word">
+        /// The word.
+        /// </param>
         public void AddWordToVocabulary(Word<T> word)
         {
-            var r = _nGramParser.GetLexemes(word.Value).ToList();
+            var r = this.nGramParser.GetLexemes(word.Value).ToList();
             foreach (var lexem in r)
             {
-                if (_vocabulary.ContainsKey(lexem))
+                if (this.vocabulary.ContainsKey(lexem))
                 {
-                    _vocabulary[lexem].Add(word);
+                    this.vocabulary[lexem].Add(word);
                 }
                 else
                 {
-                    _vocabulary.Add(lexem, new SortedSet<Word<T>>(_comparerFactory.GetComparer())
-                    {
-                        word
+                    this.vocabulary.Add(
+                        lexem,
+                        new SortedSet<Word<T>>(this.comparerFactory.GetComparer())
+                            {
+                                word
                     });
                 }
             }
         }
 
+        /// <summary>
+        /// The add words to vocabulary.
+        /// </summary>
+        /// <param name="words">
+        /// The words.
+        /// </param>
         public void AddWordsToVocabulary(IEnumerable<Word<T>> words)
         {
             foreach (var word in words)
-                AddWordToVocabulary(word);
+            {
+                this.AddWordToVocabulary(word);
+            }
         }
 
+        /// <summary>
+        /// The get words by prefix.
+        /// </summary>
+        /// <param name="prefix">
+        /// The prefix.
+        /// </param>
+        /// <returns>
+        /// The words.
+        /// </returns>
         public IEnumerable<Word<T>> GetWordsByPrefix(T prefix)
         {
-            return _vocabulary.ContainsKey(prefix) ? _vocabulary[prefix].Take(10) : null;
+            return this.vocabulary.ContainsKey(prefix) ? this.vocabulary[prefix].Take(10) : null;
         }
 
+        /// <summary>
+        /// The set count words.
+        /// </summary>
+        /// <param name="count">
+        /// The count.
+        /// </param>
         public void SetCountWords(uint count)
         {
-            if (_vocabulary.Count == 0)
-                _vocabulary = new Dictionary<T, SortedSet<Word<T>>>((int)count);
+            if (this.vocabulary.Count == 0)
+            {
+                this.vocabulary = new Dictionary<T, SortedSet<Word<T>>>((int)count);
+            }
         }
     }
 }

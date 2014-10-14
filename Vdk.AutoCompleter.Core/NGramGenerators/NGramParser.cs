@@ -1,23 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="NGramParser.cs" company="Ivan Kornilov">
+//   Copyright ©  2014, Ivan Kornilov. All rights reserved.
+// </copyright>
+// <summary>
+//   Defines the NGramParser type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Vdk.AutoCompleter.Core.NGramGenerators
 {
+    using System;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// The n gram parser.
+    /// </summary>
     public class NGramParser : INGramParser<string>
     {
-        private readonly int _minLength;
-        private readonly int _maxLength;
+        /// <summary>
+        /// The min length NGRAM.
+        /// </summary>
+        private readonly int minLength;
 
+        /// <summary>
+        /// The max length NGRAM.
+        /// </summary>
+        private readonly int maxLength;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NGramParser"/> class.
+        /// </summary>
+        /// <param name="minLength">
+        /// The min length.
+        /// </param>
+        /// <param name="maxLength">
+        /// The max length.
+        /// </param>
         public NGramParser(int minLength, int maxLength)
         {
-            _minLength = minLength;
-            _maxLength = maxLength;
+            this.minLength = minLength;
+            this.maxLength = maxLength;
         }
 
+        /// <summary>
+        /// The get NGRAM lexemes.
+        /// </summary>
+        /// <param name="word">
+        /// The word.
+        /// </param>
+        /// <returns>
+        /// The NGRAM lexemes.
+        /// </returns>
         public IEnumerable<string> GetLexemes(string word)
         {
-            var startIndex = Math.Min(word.Length, _minLength);
-            var length = Math.Min(word.Length, _maxLength);
+            var startIndex = Math.Min(word.Length, this.minLength);
+            var length = Math.Min(word.Length, this.maxLength);
 
             //var list = new ConcurrentBag<string>();
             //Parallel.For(startIndex, length, i => list.Add(word.Substring(0, i)));

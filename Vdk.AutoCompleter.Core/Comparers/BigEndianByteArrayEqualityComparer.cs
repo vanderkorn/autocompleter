@@ -1,44 +1,41 @@
-﻿using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Vdk.AutoCompleter.Core.Extensions;
-using Vdk.AutoCompleter.Core.Services;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BigEndianByteArrayEqualityComparer.cs" company="Ivan Kornilov">
+//   Copyright ©  2014, Ivan Kornilov. All rights reserved.
+// </copyright>
+// <summary>
+//   Defines the CommonArray type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
 
 namespace Vdk.AutoCompleter.Core.Comparers
 {
-    [StructLayout(LayoutKind.Explicit)]
-    public struct CommonArray
-    {
-        [FieldOffset(0)]
-        public byte[] ByteArray;
+    using System.Collections.Generic;
+    using Vdk.AutoCompleter.Core.Extensions;
 
-        [FieldOffset(0)]
-        public short[] Int16Array;
-
-        [FieldOffset(0)]
-        public ushort[] UInt16Array;
-
-        [FieldOffset(0)]
-        public int[] Int32Array;
-
-        [FieldOffset(0)]
-        public uint[] UInt32Array;
-
-        [FieldOffset(0)]
-        public long[] Int64Array;
-
-        [FieldOffset(0)]
-        public ulong[] UInt64Array;
-
-        [FieldOffset(0)]
-        public float[] SingleArray;
-
-        [FieldOffset(0)]
-        public double[] DoubleArray;
-    }
+    /// <summary>
+    /// The big endian byte array equality comparer.
+    /// </summary>
     public class BigEndianByteArrayEqualityComparer : IEqualityComparer<byte[]>
     {
+        /// <summary>
+        /// The instance.
+        /// </summary>
         public static readonly BigEndianByteArrayEqualityComparer Instance = new BigEndianByteArrayEqualityComparer();
-        
+
+        /// <summary>
+        /// The equals.
+        /// </summary>
+        /// <param name="x">
+        /// The x.
+        /// </param>
+        /// <param name="y">
+        /// The y.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         public bool Equals(byte[] x, byte[] y)
         {
             if (x.Length != y.Length)
@@ -111,11 +108,18 @@ namespace Vdk.AutoCompleter.Core.Comparers
             return true;
         }
 
+        /// <summary>
+        /// The get hash code.
+        /// </summary>
+        /// <param name="obj">
+        /// The obj.
+        /// </param>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
         public int GetHashCode(byte[] obj)
         {
             return obj.GetHashCodeEx();
         }
     }
-
-  
 }

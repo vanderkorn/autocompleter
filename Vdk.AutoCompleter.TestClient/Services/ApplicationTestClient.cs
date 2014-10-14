@@ -7,7 +7,7 @@ using Vdk.AutoCompleter.Core.Writers;
 
 namespace Vdk.AutoCompleter.TestClient.Services
 {
-    public class ApplicationTestClient<T> : IApplicationTestClient<T>
+    public class ApplicationTestClient<T> : IApplicationTestClient
     {
         private readonly IVocabularyReader<T> _reader;
         private readonly IVocabularyWriter<T> _writer;
