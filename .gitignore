@@ -4,6 +4,7 @@
 /*.suo
 bin
 obj
+*.user
 /*.user
 /*.Cache
 /StyleCop.Cache
@@ -23,3 +24,7 @@ obj
 /Vdk.AutoCompleter.Thrift.ServerModule/*.Cache
 /Vdk.AutoCompleter.Thrift.ClientModule/*.StyleCop
 /Vdk.AutoCompleter.Thrift.Client/*.Cache
+/Vdk.AutoCompleter.Wcf.Core/*.user
+/Vdk.AutoCompleter.Wcf.Server/*.user
+/Vdk.AutoCompleter.Thrift.Server/*.user
+/Vdk.AutoCompleter.Thrift.Client/*.user
