@@ -12,3 +12,5 @@ obj
 /Vdk.AutoCompleter.Core/*.user
 /CustomTextEncoder/*.user
 /Vdk.AutoCompleter.Wcf.Client/*.user
+/Vdk.AutoCompleter.Thrift.Server/*.Cache
+/Vdk.AutoCompleter.Thrift.Core/StyleCop.Cache
