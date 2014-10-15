@@ -15,7 +15,10 @@ namespace Vdk.AutoCompleter.Common
     /// <summary>
     /// The TestClient module interface.
     /// </summary>
-    public interface IApplicationTestClient : IDependency
+    /// <typeparam name="T">
+    /// Type of element
+    /// </typeparam>
+    public interface IApplicationTestClient<T> : IDependency
     {
         /// <summary>
         /// The run TestClient.

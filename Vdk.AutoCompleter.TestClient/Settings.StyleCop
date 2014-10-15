@@ -2,8 +2,8 @@
   <Analyzers>
     <Analyzer AnalyzerId="StyleCop.CSharp.DocumentationRules">
       <AnalyzerSettings>
-        <StringProperty Name="CompanyName">VanDerKorn </StringProperty>
-        <StringProperty Name="Copyright">Copyright (c) VanDerKorn (vanderkorn@gmail.com). All rights reserved.</StringProperty>
+        <StringProperty Name="CompanyName">Ivan Kornilov</StringProperty>
+        <StringProperty Name="Copyright">Copyright ©  2014, Ivan Kornilov. All rights reserved.</StringProperty>
       </AnalyzerSettings>
     </Analyzer>
   </Analyzers>

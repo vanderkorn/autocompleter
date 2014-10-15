@@ -10,7 +10,10 @@
 
 namespace Vdk.AutoCompleter.Thrift.ClientModule
 {
+    using System;
     using System.Collections.Generic;
+    using System.Net.Sockets;
+
     using global::Thrift.Protocol;
     using global::Thrift.Transport;
     using Vdk.AutoCompleter.Common;
@@ -21,6 +24,21 @@ namespace Vdk.AutoCompleter.Thrift.ClientModule
     /// </summary>
     public class ThriftClientApplication : IApplicationClient<string>
     {
+        /// <summary>
+        /// Max reconnect retries
+        /// </summary>
+        private const int MaxRetries = 3;
+
+        /// <summary>
+        /// Port server
+        /// </summary>
+        private int _port;
+
+        /// <summary>
+        /// Host server
+        /// </summary>
+        private string _host;
+
         /// <summary>
         /// The THRIFT client.
         /// </summary>
@@ -37,7 +55,37 @@ namespace Vdk.AutoCompleter.Thrift.ClientModule
         /// </returns>
         public IList<string> Get(string prefix)
         {
-            return this.client.Get(prefix);
+            Exception maxRetriesException = null;
+            for (var i = 0; i < MaxRetries; i++)
+            {
+                try
+                {
+                    if (this.client == null)
+                    {
+                        this.TryReConnect();
+                    }
+
+                    return this.client.Get(prefix);
+                }
+                catch (SocketException ex)
+                {
+                    maxRetriesException = ex;
+
+                    if (this.client != null)
+                    {
+                        this.client.Dispose();
+                    }
+
+                    this.client = null;
+                }
+            }
+
+            if (maxRetriesException != null)
+            {
+                throw new Exception(string.Format("Thrift call failed after {0} retries", MaxRetries), maxRetriesException);
+            }
+
+            throw new Exception(string.Format("Thrift call failed after {0} retries", MaxRetries));
         }
 
         /// <summary>
@@ -51,11 +99,15 @@ namespace Vdk.AutoCompleter.Thrift.ClientModule
         /// </param>
         public void Connect(string host, int port)
         {
-            TTransport transport = new TSocket(host, port);
-            transport.Open();
-
-            var proto = new TBinaryProtocol(transport);
-            this.client = new AutoCompleteService.Client(proto);
+            this._host = host;
+            this._port = port;
+            try
+            {
+                this.TryReConnect();
+            }
+            catch (SocketException)
+            {
+            }
         }
 
         /// <summary>
@@ -67,6 +119,19 @@ namespace Vdk.AutoCompleter.Thrift.ClientModule
             {
                 this.client.Dispose();
             }
+        }
+
+
+        /// <summary>
+        /// Reconnect to server.
+        /// </summary>
+        private void TryReConnect()
+        {
+            TTransport transport = new TSocket(_host, _port);
+            transport.Open();
+
+            var proto = new TBinaryProtocol(transport);
+            this.client = new AutoCompleteService.Client(proto);
         }
     }
 }

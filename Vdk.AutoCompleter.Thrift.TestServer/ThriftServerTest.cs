@@ -1,34 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Autofac;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Vdk.AutoCompleter.Common;
-using Vdk.AutoCompleter.Common.IOC;
-using Vdk.AutoCompleter.Thrift.ClientModule;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ThriftServerTest.cs" company="Ivan Kornilov">
+//   Copyright ©  2014, Ivan Kornilov. All rights reserved.
+// </copyright>
+// <summary>
+//   Defines the ThriftServerTest type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 
 namespace Vdk.AutoCompleter.Thrift.TestServer
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Autofac;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using Vdk.AutoCompleter.Common;
+    using Vdk.AutoCompleter.Common.IOC;
+    using Vdk.AutoCompleter.Thrift.ClientModule;
+
+    /// <summary>
+    /// The thrift server tests.
+    /// </summary>
     [TestClass]
     public class ThriftServerTest
     {
+        /// <summary>
+        /// The host.
+        /// </summary>
         private const string Host = "localhost";
+
+        /// <summary>
+        /// The port.
+        /// </summary>
         private const int Port = 823;
 
+        /// <summary>
+        /// The initialize test.
+        /// </summary>
         [TestInitialize]
         public void Initialize()
         {
             CoreInitializer.Initialize(Dependencies);
         }
 
-        private void Dependencies(ContainerBuilder builder)
-        {
-            builder.RegisterModule(new ThriftClientApplicationModule());
-        }
-
+        /// <summary>
+        /// The test over method Get
+        /// </summary>
         [TestMethod]
-        public void TestMethod()
+        public void GetTest()
         {
             var app = ServiceLocator.Resolve<IApplicationClient<string>>();
             app.Connect(Host, Port);
@@ -39,8 +63,11 @@ namespace Vdk.AutoCompleter.Thrift.TestServer
                 Console.WriteLine(r);
         }
 
+        /// <summary>
+        /// The multithreaded short test over method Get.
+        /// </summary>
         [TestMethod]
-        public void TestMethod2()
+        public void GetThreadedTest()
         {
             var prefixes = new List<string>()
             {
@@ -65,8 +92,12 @@ namespace Vdk.AutoCompleter.Thrift.TestServer
               
             });
         }
+
+        /// <summary>
+        /// The multithreaded long test over method Get.
+        /// </summary>
         [TestMethod]
-        public void TestMethod3()
+        public void GetLongThreadedTest()
         {
             var tasks = new List<Task>();
 
@@ -117,6 +148,17 @@ namespace Vdk.AutoCompleter.Thrift.TestServer
             Task.WaitAll(tasks.ToArray());
 
           
+        }
+
+        /// <summary>
+        /// The register dependencies.
+        /// </summary>
+        /// <param name="builder">
+        /// The IOC container builder.
+        /// </param>
+        private void Dependencies(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new ThriftClientApplicationModule());
         }
 
     }
