@@ -13,6 +13,9 @@
 В случае использования технологии: проект Vdk.AutoCompleter.Thirt.Server и проект Vdk.AutoCompleter.Thirt.Client. 
 </li>
 </ul>
+
+<p>Для того чтобы скомпилить решение можно выполнить командный файл Vdk.AutoCompleter.Build.cmd. Выходные файлы запишутся в директорию Vdk.AutoCompleter.Release. Также в этой директории находятся командный файлы для удобства тестирования.</p> 
+
 =======================================
 <p>This program is to decision the problem of finding autocomplete words<br /></p>
 
@@ -30,3 +33,5 @@ In the case of technology THRIFT: project Vdk.AutoCompleter.Thirt.Server and pro
 </li>
 
 </ul>
+
+<p>In order that the solution can be compiled to run the command file Vdk.AutoCompleter.Build.cmd. The output files are written to the directory Vdk.AutoCompleter.Release. Also in this directory are batch files for ease of testing.</p> 
