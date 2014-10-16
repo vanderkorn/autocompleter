@@ -28,3 +28,8 @@ obj
 /Vdk.AutoCompleter.Wcf.Server/*.user
 /Vdk.AutoCompleter.Thrift.Server/*.user
 /Vdk.AutoCompleter.Thrift.Client/*.user
+/Vdk.AutoCompleter.Release/testclient
+/Vdk.AutoCompleter.Release/thriftclient
+/Vdk.AutoCompleter.Release/thriftserver
+/Vdk.AutoCompleter.Release/wcfclient
+/Vdk.AutoCompleter.Release/wcfserver

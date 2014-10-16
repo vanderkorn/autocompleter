@@ -1,1 +1,32 @@
-<p>This program is to decision the problem of finding autocomplete words<br />
+<p>Программа для решения задачи аводополнения слов<br /></p>
+
+<p>Решение состоит из двух частей:</p> 
+
+<ul>
+<li>
+Базовое. Конслольное приложение.<br />
+Проект Vdk.AutoCompleter.TestClient
+</li>
+<li>
+Дополнительная. Клиент-серверный сервис. <br />
+В случае использования технологии WCF: проект Vdk.AutoCompleter.Wcf.Server и проект Vdk.AutoCompleter.Wcf.Client. <br />
+В случае использования технологии : проект Vdk.AutoCompleter.Thirt.Server и проект Vdk.AutoCompleter.Thirt.Client. 
+</li>
+</ul>
+=======================================
+<p>This program is to decision the problem of finding autocomplete words<br /></p>
+
+<p>Decision of the problem consists of two parts:</p> 
+
+<ul>
+<li>
+Basic. Standalone application.<br />
+Project Vdk.AutoCompleter.TestClient
+</li>
+<li>
+Additional. Сlient-server service. <br />
+In the case of technology WCF: project Vdk.AutoCompleter.Wcf.Server and project Vdk.AutoCompleter.Wcf.Client. <br />
+In the case of technology THRIFT: project Vdk.AutoCompleter.Thirt.Server and project Vdk.AutoCompleter.Thirt.Client. 
+</li>
+
+</ul>
