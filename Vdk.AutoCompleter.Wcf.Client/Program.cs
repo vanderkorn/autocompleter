@@ -37,8 +37,11 @@ namespace Vdk.AutoCompleter.Wcf.Client
                 CoreInitializer.Initialize(Dependencies);
                 using (var scope = ServiceLocator.GetContainer().BeginLifetimeScope())
                 {
+                    Console.WriteLine("Connecting to WCF server {0}:{1} ...", options.Host, options.Port);
                     var app = scope.Resolve<IApplicationClient<string>>();
                     app.Connect(options.Host, options.Port);
+                    Console.WriteLine("Connected to WCF server {0}:{1} ", options.Host, options.Port);
+                    Console.WriteLine("Please send command. Format get <prefix>");
                     while (true)
                     {
                         var line = Console.ReadLine();

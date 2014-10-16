@@ -13,6 +13,9 @@ namespace Vdk.AutoCompleter.Wcf.Core
     using System.Collections.Generic;
     using System.Linq;
     using System.ServiceModel;
+
+    using NLog;
+
     using Vdk.AutoCompleter.Core.Services;
 
     /// <summary>
@@ -38,6 +41,11 @@ namespace Vdk.AutoCompleter.Wcf.Core
         }
 
         /// <summary>
+        /// Gets or sets the logger.
+        /// </summary>
+        public Logger Logger { get; set; }
+
+        /// <summary>
         /// The get words.
         /// </summary>
         /// <param name="prefix">
@@ -48,6 +56,7 @@ namespace Vdk.AutoCompleter.Wcf.Core
         /// </returns>
         public IEnumerable<string> Get(string prefix)
         {
+            Logger.Debug("Get request with prefix = {0}", prefix);
             var result = this.autoCompleteService.GetWordsByPrefix(prefix);
             return result != null ? result.Select(w => w.Value) : new List<string>();
         }

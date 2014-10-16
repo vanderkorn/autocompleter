@@ -56,6 +56,8 @@
     <Compile Include="IOC\ISingletonDependency.cs" />
     <Compile Include="IOC\ResolveDependenciesSource.cs" />
     <Compile Include="IOC\ServiceLocator.cs" />
+    <Compile Include="Loggers\ILoggerHelp.cs" />
+    <Compile Include="Loggers\NlogLoggerHelp.cs" />
     <Compile Include="Loggers\LogModule.cs" />
     <Compile Include="Loggers\NLogModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

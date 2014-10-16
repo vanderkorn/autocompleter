@@ -104,8 +104,8 @@ namespace Vdk.AutoCompleter.Wcf.ServerModule
                 this.selfHost.Description.Behaviors.Add(throttleBehavior);
 
                 this.selfHost.Open();
-                Logger.Info("The service is ready.");
-                Logger.Info("Press <ENTER> to terminate service.");
+                Logger.Info("The WCF server is ready. Listening {0} port ...", port);
+                Logger.Info("Press <ENTER> to terminate server.");
             }
             catch (CommunicationException ce)
             {

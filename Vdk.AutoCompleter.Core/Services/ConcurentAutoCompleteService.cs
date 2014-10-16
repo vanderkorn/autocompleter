@@ -122,8 +122,6 @@ namespace Vdk.AutoCompleter.Core.Services
         /// </param>
         public void SetCountWords(uint count)
         {
-            // if (_vocabulary.Count == 0)
-            // _vocabulary = new ConcurrentDictionary<T, ConcurrentSortedSet<Word<T>>>((int)count);
         }
     }
 }

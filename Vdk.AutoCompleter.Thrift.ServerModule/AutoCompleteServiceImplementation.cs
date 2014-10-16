@@ -11,7 +11,11 @@ namespace Vdk.AutoCompleter.Thrift.ServerModule
 {
     using System.Collections.Generic;
     using System.Linq;
+
+    using NLog;
+
     using Vdk.AutoCompleter.Common.IOC;
+    using Vdk.AutoCompleter.Common.Loggers;
     using Vdk.AutoCompleter.Core.Services;
     using Vdk.AutoCompleter.Thrift.Core;
 
@@ -31,7 +35,13 @@ namespace Vdk.AutoCompleter.Thrift.ServerModule
         public AutoCompleteServiceImplementation()
         {
             this.autoCompleteService = ServiceLocator.Resolve<IAutoCompleteService<string>>();
+            this.Logger = ServiceLocator.Resolve<ILoggerHelp>().Logger;
         }
+
+        /// <summary>
+        /// Gets or sets the logger.
+        /// </summary>
+        public Logger Logger { get; set; }
 
         /// <summary>
         /// The get words.
@@ -44,6 +54,7 @@ namespace Vdk.AutoCompleter.Thrift.ServerModule
         /// </returns>
         public List<string> Get(string prefix)
         {
+            Logger.Debug("Get request with prefix = {0}", prefix);
             var result = this.autoCompleteService.GetWordsByPrefix(prefix);
             return result != null ? result.Select(w => w.Value).ToList() : new List<string>();
         }

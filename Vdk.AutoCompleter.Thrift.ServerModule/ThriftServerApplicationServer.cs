@@ -87,7 +87,7 @@ namespace Vdk.AutoCompleter.Thrift.ServerModule
                     this.Throughput,
                     (t) => { });
 
-                Logger.Info("The service is ready.");
+                Logger.Info("The THRIFT server is ready. Listening {0} port ...", port);
                 this.server.Serve();
             }
             catch (Exception ce)

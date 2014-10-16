@@ -56,12 +56,10 @@ namespace Vdk.AutoCompleter.Core.NGramGenerators
             var startIndex = Math.Min(word.Length, this.minLength);
             var length = Math.Min(word.Length, this.maxLength);
 
-            //var list = new ConcurrentBag<string>();
-            //Parallel.For(startIndex, length, i => list.Add(word.Substring(0, i)));
-            //return list;
-
             for (var i = startIndex; i < length; i++)
+            {
                 yield return word.Substring(0, i);
+            }
         }
     }
 }

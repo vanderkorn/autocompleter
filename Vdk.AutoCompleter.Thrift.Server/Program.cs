@@ -10,7 +10,10 @@
 namespace Vdk.AutoCompleter.Thrift.Server
 {
     using System;
+    using System.Configuration;
+
     using Autofac;
+
     using Vdk.AutoCompleter.Common;
     using Vdk.AutoCompleter.Common.IOC;
     using Vdk.AutoCompleter.Common.Loggers;
@@ -26,7 +29,7 @@ namespace Vdk.AutoCompleter.Thrift.Server
         /// <summary>
         /// The throughput.
         /// </summary>
-        private const int Throughput = 10;
+        private const int DefaultThroughput = 10;
 
         /// <summary>
         /// The main method.
@@ -46,7 +49,7 @@ namespace Vdk.AutoCompleter.Thrift.Server
                     using (var scope = ServiceLocator.GetContainer().BeginLifetimeScope())
                     {
                         var app = scope.Resolve<IApplicationServer>();
-                        app.Throughput = Throughput;
+                        app.Throughput = GetThroughput();
                         app.Run(options.InputFile, options.Port);
                         Console.ReadLine();
                     }
@@ -56,6 +59,24 @@ namespace Vdk.AutoCompleter.Thrift.Server
                     Console.WriteLine("An exception occurred: {0}", ce.Message);
                 }
             }
+        }
+
+        /// <summary>
+        /// The get throughput from config file.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
+        private static int GetThroughput()
+        {
+            var throughput = DefaultThroughput;
+            var strThroughput = ConfigurationManager.AppSettings["Throughput"];
+            if (!string.IsNullOrWhiteSpace(strThroughput))
+            {
+                throughput = int.TryParse(strThroughput, out throughput) ? throughput : DefaultThroughput;
+            }
+
+            return throughput;
         }
 
         /// <summary>
