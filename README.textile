@@ -1,16 +1,16 @@
-<p>Программа для решения задачи аводополнения слов<br /></p>
+<p>Программа для решения задачи автодополнения слов<br /></p>
 
 <p>Решение состоит из двух частей:</p> 
 
 <ul>
 <li>
-Базовое. Конслольное приложение.<br />
+Базовое. Консольное приложение.<br />
 Проект Vdk.AutoCompleter.TestClient
 </li>
 <li>
 Дополнительная. Клиент-серверный сервис. <br />
 В случае использования технологии WCF: проект Vdk.AutoCompleter.Wcf.Server и проект Vdk.AutoCompleter.Wcf.Client. <br />
-В случае использования технологии : проект Vdk.AutoCompleter.Thirt.Server и проект Vdk.AutoCompleter.Thirt.Client. 
+В случае использования технологии: проект Vdk.AutoCompleter.Thirt.Server и проект Vdk.AutoCompleter.Thirt.Client. 
 </li>
 </ul>
 =======================================
