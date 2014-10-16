@@ -1,22 +1,21 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="WcfClientApplicationModule.cs" company="Ivan Kornilov">
-//   Ivan Kornilov
+// <copyright file="ThriftApplicationServerModule.cs" company="Ivan Kornilov">
 //   Copyright ©  2014, Ivan Kornilov. All rights reserved.
 // </copyright>
 // <summary>
-//   Defines the WcfClientApplicationModule type.
+//   Defines the ThriftServerApplicationModule type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Vdk.AutoCompleter.Wcf.ClientModule
+namespace Vdk.AutoCompleter.Thrift.ServerModule
 {
     using Autofac;
     using Vdk.AutoCompleter.Common;
 
     /// <summary>
-    /// The WCF client AUTOFAC module.
+    /// The THRIFT server AUTOFAC module.
     /// </summary>
-    public class WcfClientApplicationModule : Module
+    public class ThriftApplicationServerModule : Module
     {
         /// <summary>
         /// The load module.
@@ -26,8 +25,8 @@ namespace Vdk.AutoCompleter.Wcf.ClientModule
         /// </param>
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<WcfClientApplication>()
-                .As<IApplicationClient<string>>()
+            builder.RegisterType<ThriftApplicationServer>()
+                .As<IApplicationServer>()
                 .InstancePerDependency();
         }
     }

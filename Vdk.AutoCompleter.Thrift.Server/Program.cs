@@ -94,7 +94,7 @@ namespace Vdk.AutoCompleter.Thrift.Server
             builder.RegisterModule(new NLogModule());
 
             // register THRIFT server module
-            builder.RegisterModule(new ThriftServerApplicationModule());
+            builder.RegisterModule(new ThriftApplicationServerModule());
         }
     }
 }

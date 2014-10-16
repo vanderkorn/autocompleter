@@ -48,8 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThriftClientApplication.cs" />
-    <Compile Include="ThriftClientApplicationModule.cs" />
+    <Compile Include="ThriftApplicationClient.cs" />
+    <Compile Include="ThriftApplicationClientModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

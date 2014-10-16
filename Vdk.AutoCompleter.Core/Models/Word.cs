@@ -3,17 +3,17 @@
 //   Copyright ©  2014, Ivan Kornilov. All rights reserved.
 // </copyright>
 // <summary>
-//   The word dictionary.
+//   The word vocabulary.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Vdk.AutoCompleter.Core.Models
 {
     /// <summary>
-    /// The word dictionary.
+    /// The word vocabulary.
     /// </summary>
     /// <typeparam name="T">
-    /// Type of element dictionary
+    /// Type of element vocabulary
     /// </typeparam>
     public class Word<T>
     {

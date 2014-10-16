@@ -52,8 +52,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="WcfClientApplication.cs" />
-    <Compile Include="WcfClientApplicationModule.cs" />
+    <Compile Include="WcfApplicationClient.cs" />
+    <Compile Include="WcfApplicationClientModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CustomTextEncoder\CustomTextEncoder.csproj">

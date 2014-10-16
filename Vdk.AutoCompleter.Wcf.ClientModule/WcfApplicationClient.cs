@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="WcfClientApplication.cs" company="Ivan Kornilov">
+// <copyright file="WcfApplicationClient.cs" company="Ivan Kornilov">
 //   Ivan Kornilov
 //   Copyright ©  2014, Ivan Kornilov. All rights reserved.
 // </copyright>
@@ -21,7 +21,7 @@ namespace Vdk.AutoCompleter.Wcf.ClientModule
     /// <summary>
     /// The WCF client module.
     /// </summary>
-    public class WcfClientApplication : IApplicationClient<string>
+    public class WcfApplicationClient : IApplicationClient<string>
     {   
         /// <summary>
         /// Max reconnect retries

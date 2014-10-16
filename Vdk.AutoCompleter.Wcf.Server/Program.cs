@@ -93,7 +93,7 @@ namespace Vdk.AutoCompleter.Wcf.Server
             builder.RegisterModule(new NLogModule());
 
             // register WCF server module
-            builder.RegisterModule(new WcfServerApplicationModule());
+            builder.RegisterModule(new WcfApplicationServerModule());
         }
     }
 }

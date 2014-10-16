@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="WcfServerApplicationServer.cs" company="Ivan Kornilov">
+// <copyright file="WcfApplicationServer.cs" company="Ivan Kornilov">
 //   Copyright ©  2014, Ivan Kornilov. All rights reserved.
 // </copyright>
 // <summary>
@@ -26,10 +26,10 @@ namespace Vdk.AutoCompleter.Wcf.ServerModule
     /// <summary>
     /// The WCF server module.
     /// </summary>
-    public class WcfServerApplicationServer : IApplicationServer
+    public class WcfApplicationServer : IApplicationServer
     {
         /// <summary>
-        /// The reader dictionary.
+        /// The reader vocabulary.
         /// </summary>
         private readonly IVocabularyReader<string> reader;
 
@@ -39,12 +39,12 @@ namespace Vdk.AutoCompleter.Wcf.ServerModule
         private ServiceHost selfHost;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WcfServerApplicationServer"/> class.
+        /// Initializes a new instance of the <see cref="WcfApplicationServer"/> class.
         /// </summary>
         /// <param name="reader">
-        /// The reader dictionary.
+        /// The reader vocabulary.
         /// </param>
-        public WcfServerApplicationServer(IVocabularyReader<string> reader)
+        public WcfApplicationServer(IVocabularyReader<string> reader)
         {
             this.reader = reader;
             this.Throughput = 10;
@@ -64,7 +64,7 @@ namespace Vdk.AutoCompleter.Wcf.ServerModule
         /// The start server.
         /// </summary>
         /// <param name="inputFile">
-        /// The input file (dictionary).
+        /// The input file (vocabulary).
         /// </param>
         /// <param name="port">
         /// The server port.

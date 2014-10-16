@@ -54,7 +54,7 @@ namespace Vdk.AutoCompleter.TestClient.Services
         /// The run TestClient.
         /// </summary>
         /// <param name="reader">
-        /// The reader dictionary and test data.
+        /// The reader vocabulary and test data.
         /// </param>
         /// <param name="writer">
         /// The writer results.

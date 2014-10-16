@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ThriftClientApplication.cs" company="Ivan Kornilov">
+// <copyright file="ThriftApplicationClient.cs" company="Ivan Kornilov">
 //   Ivan Kornilov
 //   Copyright ©  2014, Ivan Kornilov. All rights reserved.
 // </copyright>
@@ -22,7 +22,7 @@ namespace Vdk.AutoCompleter.Thrift.ClientModule
     /// <summary>
     /// The THRIFT client module.
     /// </summary>
-    public class ThriftClientApplication : IApplicationClient<string>
+    public class ThriftApplicationClient : IApplicationClient<string>
     {
         /// <summary>
         /// Max reconnect retries

@@ -13,6 +13,7 @@ namespace Vdk.AutoCompleter.Wcf.Client
     using System.Linq;
     using Autofac;
     using Vdk.AutoCompleter.Common;
+    using Vdk.AutoCompleter.Common.Extensions;
     using Vdk.AutoCompleter.Common.IOC;
     using Vdk.AutoCompleter.Wcf.Client.Models;
     using Vdk.AutoCompleter.Wcf.ClientModule;
@@ -47,13 +48,14 @@ namespace Vdk.AutoCompleter.Wcf.Client
                         var line = Console.ReadLine();
                         if (!string.IsNullOrWhiteSpace(line))
                         {
-                            if (line == "exit")
+                            line = line.ToLowerInvariant().Trim().RemoveDuplicateBlankSpaces();
+                            if (string.Equals(line, "exit", StringComparison.OrdinalIgnoreCase))
                             {
                                 break;
                             }
 
                             var arr = line.Split(' ');
-                            if (arr.Length < 2 || arr[0] != "get")
+                            if (arr.Length < 2 || !string.Equals(arr[0], "get", StringComparison.OrdinalIgnoreCase))
                             {
                                 continue;
                             }
@@ -86,7 +88,7 @@ namespace Vdk.AutoCompleter.Wcf.Client
         private static void Dependencies(ContainerBuilder builder)
         {
             // register WCF client module
-            builder.RegisterModule(new WcfClientApplicationModule());
+            builder.RegisterModule(new WcfApplicationClientModule());
         }
     }
 }

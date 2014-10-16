@@ -17,7 +17,7 @@ namespace Vdk.AutoCompleter.Common
     /// The client module interface.
     /// </summary>
     /// <typeparam name="T">
-    /// Type of element dictionary
+    /// Type of element vocabulary
     /// </typeparam>
     public interface IApplicationClient<T> : IDependency, IDisposable
     {

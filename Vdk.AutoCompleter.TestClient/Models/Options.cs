@@ -17,7 +17,7 @@ namespace Vdk.AutoCompleter.TestClient.Models
     public class Options
     {
         /// <summary>
-        /// Gets or sets the input file (dictionary).
+        /// Gets or sets the input file (vocabulary).
         /// </summary>
         [Option('r', "read", Required = false, HelpText = "Input file to be processed.")]
         public string InputFile { get; set; }

@@ -158,7 +158,7 @@ namespace Vdk.AutoCompleter.Thrift.TestServer
         /// </param>
         private void Dependencies(ContainerBuilder builder)
         {
-            builder.RegisterModule(new ThriftClientApplicationModule());
+            builder.RegisterModule(new ThriftApplicationClientModule());
         }
 
     }

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ThriftServerApplicationServer.cs" company="Ivan Kornilov">
+// <copyright file="ThriftApplicationServer.cs" company="Ivan Kornilov">
 //   Copyright ©  2014, Ivan Kornilov. All rights reserved.
 // </copyright>
 // <summary>
@@ -23,10 +23,10 @@ namespace Vdk.AutoCompleter.Thrift.ServerModule
     /// <summary>
     /// The THRIFT server module.
     /// </summary>
-    public class ThriftServerApplicationServer : IApplicationServer
+    public class ThriftApplicationServer : IApplicationServer
     {
         /// <summary>
-        /// The reader dictionary.
+        /// The reader vocabulary.
         /// </summary>
         private readonly IVocabularyReader<string> reader;
 
@@ -36,12 +36,12 @@ namespace Vdk.AutoCompleter.Thrift.ServerModule
         private TThreadPoolServer server;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ThriftServerApplicationServer"/> class.
+        /// Initializes a new instance of the <see cref="ThriftApplicationServer"/> class.
         /// </summary>
         /// <param name="reader">
-        /// The reader dictionary.
+        /// The reader vocabulary.
         /// </param>
-        public ThriftServerApplicationServer(IVocabularyReader<string> reader)
+        public ThriftApplicationServer(IVocabularyReader<string> reader)
         {
             this.reader = reader;
             this.Throughput = 10;
@@ -61,7 +61,7 @@ namespace Vdk.AutoCompleter.Thrift.ServerModule
         /// The start server.
         /// </summary>
         /// <param name="inputFile">
-        /// The input file (dictionary).
+        /// The input file (vocabulary).
         /// </param>
         /// <param name="port">
         /// The server port.

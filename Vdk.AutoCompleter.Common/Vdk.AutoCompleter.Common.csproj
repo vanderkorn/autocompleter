@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="IApplicationClient.cs" />
     <Compile Include="IApplicationServer.cs" />
     <Compile Include="IApplicationTestClient.cs" />

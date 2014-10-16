@@ -163,7 +163,7 @@ namespace Vdk.AutoCompleter.Wcf.TestServer
         /// </param>
         private void Dependencies(ContainerBuilder builder)
         {
-            builder.RegisterModule(new WcfClientApplicationModule());
+            builder.RegisterModule(new WcfApplicationClientModule());
         }
     }
 }

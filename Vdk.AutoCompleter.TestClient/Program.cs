@@ -31,10 +31,10 @@ namespace Vdk.AutoCompleter.TestClient
         /// </param>
         public static void Main(string[] args)
         {
-            CoreInitializer.Initialize(Dependencies);
             var options = new Options();
             if (CommandLine.Parser.Default.ParseArgumentsStrict(args, options))
             {
+                CoreInitializer.Initialize(Dependencies);
                 using (var lifetime = ServiceLocator.GetContainer().BeginLifetimeScope())
                 {
                     var module = lifetime.Resolve<IApplicationTestClient<string>>();

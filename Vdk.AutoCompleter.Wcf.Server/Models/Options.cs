@@ -17,7 +17,7 @@ namespace Vdk.AutoCompleter.Wcf.Server.Models
     public class Options
     {
         /// <summary>
-        /// Gets or sets the input file (dictionary).
+        /// Gets or sets the input file (vocabulary).
         /// </summary>
         [Option('r', "read", Required = true, HelpText = "Input file to be processed.")]
         public string InputFile { get; set; }

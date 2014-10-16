@@ -31,7 +31,7 @@ namespace Vdk.AutoCompleter.Common
         /// The start server.
         /// </summary>
         /// <param name="inputFile">
-        /// The input file (dictionary).
+        /// The input file (vocabulary).
         /// </param>
         /// <param name="port">
         /// The server port.

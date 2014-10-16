@@ -13,6 +13,8 @@ namespace Vdk.AutoCompleter.Core.Readers
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
+
+    using Vdk.AutoCompleter.Common.Extensions;
     using Vdk.AutoCompleter.Core.Collections;
     using Vdk.AutoCompleter.Core.Converters;
     using Vdk.AutoCompleter.Core.Models;
